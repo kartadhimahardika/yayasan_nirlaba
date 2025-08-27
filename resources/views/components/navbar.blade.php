@@ -6,11 +6,11 @@
             <div class="flex items-center">
                 <div class="flex-shrink-0">
                     <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                        <span class="text-white font-bold text-sm">H</span>
+                        <span class="text-white font-bold text-sm">YN</span>
                     </div>
                 </div>
                 <div class="ml-3">
-                    <span class="text-xl font-semibold text-gray-900">HopeForward</span>
+                    <span class="text-xl font-semibold text-gray-900">Yayasan Nirlaba</span>
                 </div>
             </div>
 
