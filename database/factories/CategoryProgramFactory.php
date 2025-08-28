@@ -20,11 +20,10 @@ class CategoryProgramFactory extends Factory
 
     public function definition(): array
     {
-        $name = $this->faker->unique()->words(2, true);
-
+        $category_name = fake()->sentence(rand(1, 3), false);
         return [
-            'name' => ucfirst($name),
-            'slug' => Str::slug($name),
+            'name' => $category_name,
+            'slug' => Str::slug($category_name),
         ];
     }
 }

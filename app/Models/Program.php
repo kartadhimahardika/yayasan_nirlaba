@@ -19,6 +19,6 @@ class Program extends Model
 
     public function categoryProgram()
     {
-        return $this->belongsTo(CategoryProgram::class, 'category_program_id');
+        return $this->belongsTo(CategoryProgram::class);
     }
 }

@@ -14,7 +14,9 @@ Route::get('/wellcome', function () {
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/about', [AboutController::class, 'index']);
-Route::get('/program', [ProgramController::class, 'index']);
+Route::get('/programs', [ProgramController::class, 'index']);
+Route::get('/programs/{program:slug}', [ProgramController::class, 'show']);
+Route::get('/categoryProgram/{categoryProgram:slug}', [ProgramController::class, 'showCategory']);
 Route::get('/contact', [ContactController::class, 'index']);
 
 Route::get('/dashboard', function () {

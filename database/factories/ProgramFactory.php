@@ -21,7 +21,7 @@ class ProgramFactory extends Factory
 
     public function definition(): array
     {
-        $title = $this->faker->sentence(3);
+        $title = $this->faker->sentence(rand(6, 8));
 
         return [
             'category_program_id' => CategoryProgram::factory(),
