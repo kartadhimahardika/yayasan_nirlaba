@@ -18,7 +18,7 @@
             <div class="hidden md:flex md:items-center md:space-x-8">
                 <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium" href="/">Home</a>
                 <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium" href="/about">About</a>
-                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium" href="/program">Programs</a>
+                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium" href="/programs">Programs</a>
                 <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium" href="/contact">Contact</a>
                 <button
                     class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full text-sm font-medium transition-colors">
