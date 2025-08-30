@@ -12,16 +12,17 @@ Route::get('/wellcome', function () {
     return view('welcome');
 });
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/about', [AboutController::class, 'index']);
-Route::get('/programs', [ProgramController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/programs', [ProgramController::class, 'index'])->name('programs');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
 Route::get('/programs/{program:slug}', [ProgramController::class, 'show']);
 Route::get('/categoryProgram/{categoryProgram:slug}', [ProgramController::class, 'showCategory']);
-Route::get('/contact', [ContactController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', IsAdmin::class])->name('dashboard');
 
 Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

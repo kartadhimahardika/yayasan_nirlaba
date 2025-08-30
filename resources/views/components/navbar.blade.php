@@ -3,23 +3,37 @@
         <div class="flex justify-between items-center h-16">
 
             <!-- Logo -->
-            <div class="flex items-center">
-                <div class="flex-shrink-0">
-                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                        <span class="text-white font-bold text-sm">YN</span>
+            <a href="{{ route('home') }}">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">YN</span>
+                        </div>
+                    </div>
+                    <div class="ml-3">
+                        <span class="text-xl font-semibold text-gray-900">Yayasan Nirlaba</span>
                     </div>
                 </div>
-                <div class="ml-3">
-                    <span class="text-xl font-semibold text-gray-900">Yayasan Nirlaba</span>
-                </div>
-            </div>
+            </a>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex md:items-center md:space-x-8">
-                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium" href="/">Home</a>
-                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium" href="/about">About</a>
-                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium" href="/programs">Programs</a>
-                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium" href="/contact">Contact</a>
+                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('home') ? 'border-b-2 border-indigo-400' : '' }}"
+                    href="{{ route('home') }}">
+                    Home
+                </a>
+                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('about') ? 'border-b-2 border-indigo-400' : '' }}"
+                    href="{{ route('about') }}">
+                    About
+                </a>
+                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('programs') ? 'border-b-2 border-indigo-400' : '' }}"
+                    href="{{ route('programs') }}">
+                    Programs
+                </a>
+                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('contact') ? 'border-b-2 border-indigo-400' : '' }}"
+                    href="{{ route('contact') }}">
+                    Contact
+                </a>
                 <button
                     class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full text-sm font-medium transition-colors">
                     Donate
@@ -47,10 +61,22 @@
 
     <!-- Mobile Menu -->
     <div x-show="open" x-transition class="md:hidden px-4 pb-4 space-y-2">
-        <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium" href="/">Home</a>
-        <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium" href="/about">About</a>
-        <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium" href="/program">Programs</a>
-        <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium" href="/contact">Contact</a>
+        <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('home') ? 'border-b-2 border-indigo-400' : '' }}"
+            href="{{ route('home') }}">
+            Home
+        </a>
+        <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('about') ? 'border-b-2 border-indigo-400' : '' }}"
+            href="{{ route('about') }}">
+            About
+        </a>
+        <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('programs') ? 'border-b-2 border-indigo-400' : '' }}"
+            href="{{ route('programs') }}">
+            Programs
+        </a>
+        <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('contact') ? 'border-b-2 border-indigo-400' : '' }}"
+            href="{{ route('contact') }}">
+            Contact
+        </a>
         <button
             class="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full text-sm font-medium transition-colors">
             Donate
