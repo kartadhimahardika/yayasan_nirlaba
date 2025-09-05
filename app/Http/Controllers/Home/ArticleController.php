@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Home;
 
 use App\Models\User;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
@@ -12,11 +13,11 @@ class ArticleController extends Controller
     {
         $articles = Article::latest()->paginate(4);
 
-        return view('articles', compact('articles'));
+        return view('home.articles', compact('articles'));
     }
 
     public function show(Article $article)
     {
-        return view('article', compact('article'));
+        return view('home.article', compact('article'));
     }
 }

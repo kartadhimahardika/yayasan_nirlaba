@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Home;
 
-use App\Models\CategoryProgram;
-use Illuminate\Http\Request;
 use App\Models\Program;
+use Illuminate\Http\Request;
+use App\Models\CategoryProgram;
+use App\Http\Controllers\Controller;
 
 class ProgramController extends Controller
 {
@@ -12,19 +13,19 @@ class ProgramController extends Controller
     {
         $programs = Program::latest()->paginate(4);
 
-        return view('programs', compact('programs'));
+        return view('home.programs', compact('programs'));
     }
 
     public function show(Program $program)
     {
 
-        return view('program', compact('program'));
+        return view('home.program', compact('program'));
     }
 
     public function showCategory(CategoryProgram $categoryProgram)
     {
 
-        return view('programs', [
+        return view('home.programs', [
             'programs' => $categoryProgram->programs()->paginate(2)
         ]);
     }

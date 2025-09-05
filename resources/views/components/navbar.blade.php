@@ -30,10 +30,10 @@
                     href="{{ route('programs') }}">
                     Programs
                 </a>
-                {{-- <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('programs') ? 'border-b-2 border-indigo-400' : '' }}"
-                    href="{{ route('programs') }}">
-                    Programs
-                </a> --}}
+                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('articles') ? 'border-b-2 border-indigo-400' : '' }}"
+                    href="{{ route('articles') }}">
+                    Berita
+                </a>
                 <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('contact') ? 'border-b-2 border-indigo-400' : '' }}"
                     href="{{ route('contact') }}">
                     Contact
@@ -76,6 +76,10 @@
         <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('programs') ? 'border-b-2 border-indigo-400' : '' }}"
             href="{{ route('programs') }}">
             Programs
+        </a>
+        <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('articles') ? 'border-b-2 border-indigo-400' : '' }}"
+            href="{{ route('articles') }}">
+            Berita
         </a>
         <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('contact') ? 'border-b-2 border-indigo-400' : '' }}"
             href="{{ route('contact') }}">

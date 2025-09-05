@@ -22,7 +22,8 @@
                         </div>
                         <div class="p-8">
                             <div class="flex items-center space-x-4">
-                                <a href="">
+                                <a class="hover:underline" href="">
+                                    {{-- /posts?author={{ $post->author->username }} --}}
                                     <span class="font-medium dark:text-white text-xs">
                                         Oleh {{ $article->author->name }}
                                     </span>

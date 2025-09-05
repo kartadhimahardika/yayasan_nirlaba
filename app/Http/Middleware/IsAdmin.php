@@ -21,6 +21,6 @@ class IsAdmin
             return $next($request);
         }
 
-        return redirect()->back();
+        return abort(403, 'akses ditolak');
     }
 }
