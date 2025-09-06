@@ -36,7 +36,7 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::middleware(['auth', IsAdmin::class])->group(function () {
     // Dashboard
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('dashboard.index');
     })->name('dashboard');
 
     // Profile
@@ -45,7 +45,7 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Program
-    Route::get('/dashboard/programs', [DashboardProgramController::class, 'index']);
+    Route::get('/dashboard/programs', [DashboardProgramController::class, 'index'])->name('dashboardPrograms');
 });
 
 require __DIR__ . '/auth.php';
