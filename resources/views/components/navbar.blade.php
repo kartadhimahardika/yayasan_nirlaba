@@ -38,10 +38,10 @@
                     href="{{ route('contact') }}">
                     Contact
                 </a>
-                <button
+                <a href="/login"
                     class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full text-sm font-medium transition-colors">
-                    Donate
-                </button>
+                    Login
+                </a>
             </div>
 
             <!-- Mobile Hamburger -->
@@ -85,9 +85,9 @@
             href="{{ route('contact') }}">
             Contact
         </a>
-        <button
+        <a href="/login"
             class="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full text-sm font-medium transition-colors">
-            Donate
-        </button>
+            Login
+        </a>
     </div>
 </nav>

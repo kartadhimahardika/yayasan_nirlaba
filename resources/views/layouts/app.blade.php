@@ -14,24 +14,22 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100 flex">
+    <div class="min-h-screen bg-gray-50 flex">
         <!-- Sidebar -->
         @include('components.sidebar')
 
         <!-- Main Content -->
-        <div class="flex-1 flex flex-col ml-64">
-            <!-- Page Heading -->
+        <div class="flex-1 flex flex-col overflow-hidden">
             <x-header :title="$header ?? 'Dashboard'" />
 
 
             <!-- Page Content -->
             <main class="p-6">
-                <div class="mt-6">
-                    {{ $slot }}
-                </div>
+                {{ $slot }}
             </main>
         </div>
     </div>

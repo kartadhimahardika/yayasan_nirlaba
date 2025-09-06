@@ -15,7 +15,7 @@ class DashboardProgramController extends Controller
     {
         $programs = Program::latest()->paginate(10);
 
-        return view('programs', compact('programs'));
+        return view('dashboard.programs', compact('programs'));
     }
 
     /**
