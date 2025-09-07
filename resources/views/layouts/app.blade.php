@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{
+    darkMode: localStorage.getItem('darkMode') || 'system'
+}" x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))"
+    x-bind:class="{
+        'dark': darkMode === 'dark' ||
+            (darkMode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    }">
 
 <head>
     <meta charset="utf-8">
@@ -14,26 +20,28 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-50 flex">
-        <!-- Sidebar -->
-        @include('components.sidebar')
+<body class="font-sans antialiased" x-data="{ sidebarIsOpen: false }">
+    <div class="relative flex w-full flex-col md:flex-row">
+        <!-- Skip link -->
+        <a class="sr-only" href="#main-content">Skip to the main content</a>
 
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <x-header :title="$header ?? 'Dashboard'" />
+        <!-- Overlay -->
+        <div x-cloak x-show="sidebarIsOpen" class="fixed inset-0 z-20 bg-neutral-950/10 backdrop-blur-xs md:hidden"
+            aria-hidden="true" x-on:click="sidebarIsOpen = false" x-transition.opacity>
+        </div>
 
+        <x-sidebar />
 
-            <!-- Page Content -->
-            <main class="p-6">
+        <!-- top navbar & main content  -->
+        <div class="h-svh w-full overflow-y-auto bg-white dark:bg-neutral-950">
+            <x-header />
+            <div id="main-content" class="p-4">
                 {{ $slot }}
-            </main>
+            </div>
         </div>
     </div>
 </body>
-
 
 </html>

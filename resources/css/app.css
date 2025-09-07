@@ -1,14 +1,16 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @plugin '@tailwindcss/forms';
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
 @theme {
-  --font-sans:
-    Figtree, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: Figtree, ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
 }
 
 /*
@@ -20,11 +22,27 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
+}
+
+@layer components {
+    /* Untuk menu aktif */
+    .nav-active {
+        @apply flex items-center gap-2 px-2 py-1.5 rounded-sm
+           bg-black/10 text-neutral-900
+           dark:bg-white/10 dark:text-white;
+    }
+
+    /* Untuk menu non-aktif */
+    .nav-inactive {
+        @apply flex items-center gap-2 px-2 py-1.5 rounded-sm
+           text-neutral-600 hover:bg-black/5 hover:text-neutral-900
+           dark:text-neutral-300 hover:dark:text-white;
+    }
 }

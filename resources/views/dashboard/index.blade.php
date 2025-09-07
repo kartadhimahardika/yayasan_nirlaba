@@ -1,108 +1,60 @@
 <x-app-layout>
-    <div class="flex-1 flex flex-col overflow-hidden" data-oid="mbmzk31">
-        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 p-6" data-oid="275pco6">
-            <div class="max-w-7xl mx-auto" data-oid="uvdcwbl">
-                <div class="mb-8" data-oid="76c.sap">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2" data-oid="dktsq:.">Welcome back!</h3>
-                    <p class="text-gray-600" data-oid="uncng1s">Here's what's happening with your dashboard today.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8" data-oid="67leaoh">
-                    <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow duration-200"
-                        data-oid="v.k-8d3">
-                        <div class="flex items-center justify-between" data-oid=":y4glq_">
-                            <div data-oid="b_-4-3-">
-                                <p class="text-sm font-medium text-gray-600" data-oid="y7w_z42">Total Users</p>
-                                <p class="text-2xl font-bold text-gray-900" data-oid="4esacvl">2,543</p>
-                            </div>
-                            <div class="text-sm font-medium text-green-600" data-oid="q4xoqm.">+12%</div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow duration-200"
-                        data-oid="v.k-8d3">
-                        <div class="flex items-center justify-between" data-oid=":y4glq_">
-                            <div data-oid="b_-4-3-">
-                                <p class="text-sm font-medium text-gray-600" data-oid="y7w_z42">Revenue</p>
-                                <p class="text-2xl font-bold text-gray-900" data-oid="4esacvl">$45,231</p>
-                            </div>
-                            <div class="text-sm font-medium text-green-600" data-oid="q4xoqm.">+8%</div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow duration-200"
-                        data-oid="v.k-8d3">
-                        <div class="flex items-center justify-between" data-oid=":y4glq_">
-                            <div data-oid="b_-4-3-">
-                                <p class="text-sm font-medium text-gray-600" data-oid="y7w_z42">Orders</p>
-                                <p class="text-2xl font-bold text-gray-900" data-oid="4esacvl">1,234</p>
-                            </div>
-                            <div class="text-sm font-medium text-red-600" data-oid="q4xoqm.">-3%</div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow duration-200"
-                        data-oid="v.k-8d3">
-                        <div class="flex items-center justify-between" data-oid=":y4glq_">
-                            <div data-oid="b_-4-3-">
-                                <p class="text-sm font-medium text-gray-600" data-oid="y7w_z42">Conversion</p>
-                                <p class="text-2xl font-bold text-gray-900" data-oid="4esacvl">3.2%</p>
-                            </div>
-                            <div class="text-sm font-medium text-green-600" data-oid="q4xoqm.">+5%</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-sm p-6" data-oid="9zrvj7y">
-                    <h4 class="text-lg font-semibold text-gray-900 mb-4" data-oid="lfy:u:b">Recent Activity</h4>
-                    <div class="space-y-4" data-oid="w1vztfk">
-                        <div class="flex items-center space-x-4 p-3 hover:bg-gray-50 rounded-lg transition-colors duration-200"
-                            data-oid="2a:ka0w">
-                            <div class="flex-shrink-0 h-10 w-10 bg-gray-200 rounded-full animate-pulse"
-                                data-oid="u3f_l5-">
-                            </div>
-                            <div class="flex-1 space-y-2" data-oid="060200j">
-                                <div class="h-4 bg-gray-200 rounded animate-pulse" data-oid="23y263-"></div>
-                                <div class="h-3 bg-gray-200 rounded w-3/4 animate-pulse" data-oid="_lxh579"></div>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-4 p-3 hover:bg-gray-50 rounded-lg transition-colors duration-200"
-                            data-oid="2a:ka0w">
-                            <div class="flex-shrink-0 h-10 w-10 bg-gray-200 rounded-full animate-pulse"
-                                data-oid="u3f_l5-">
-                            </div>
-                            <div class="flex-1 space-y-2" data-oid="060200j">
-                                <div class="h-4 bg-gray-200 rounded animate-pulse" data-oid="23y263-"></div>
-                                <div class="h-3 bg-gray-200 rounded w-3/4 animate-pulse" data-oid="_lxh579"></div>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-4 p-3 hover:bg-gray-50 rounded-lg transition-colors duration-200"
-                            data-oid="2a:ka0w">
-                            <div class="flex-shrink-0 h-10 w-10 bg-gray-200 rounded-full animate-pulse"
-                                data-oid="u3f_l5-">
-                            </div>
-                            <div class="flex-1 space-y-2" data-oid="060200j">
-                                <div class="h-4 bg-gray-200 rounded animate-pulse" data-oid="23y263-"></div>
-                                <div class="h-3 bg-gray-200 rounded w-3/4 animate-pulse" data-oid="_lxh579"></div>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-4 p-3 hover:bg-gray-50 rounded-lg transition-colors duration-200"
-                            data-oid="2a:ka0w">
-                            <div class="flex-shrink-0 h-10 w-10 bg-gray-200 rounded-full animate-pulse"
-                                data-oid="u3f_l5-">
-                            </div>
-                            <div class="flex-1 space-y-2" data-oid="060200j">
-                                <div class="h-4 bg-gray-200 rounded animate-pulse" data-oid="23y263-"></div>
-                                <div class="h-3 bg-gray-200 rounded w-3/4 animate-pulse" data-oid="_lxh579"></div>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-4 p-3 hover:bg-gray-50 rounded-lg transition-colors duration-200"
-                            data-oid="2a:ka0w">
-                            <div class="flex-shrink-0 h-10 w-10 bg-gray-200 rounded-full animate-pulse"
-                                data-oid="u3f_l5-"></div>
-                            <div class="flex-1 space-y-2" data-oid="060200j">
-                                <div class="h-4 bg-gray-200 rounded animate-pulse" data-oid="23y263-"></div>
-                                <div class="h-3 bg-gray-200 rounded w-3/4 animate-pulse" data-oid="_lxh579"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Card 1 -->
+        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-md dark:border-gray-800 dark:bg-neutral-900">
+            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Total Users</h2>
+            <p class="mt-2 text-3xl font-bold text-indigo-600">1,250</p>
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Compared to last month: +12%</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-md dark:border-gray-800 dark:bg-neutral-900">
+            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Active Projects</h2>
+            <p class="mt-2 text-3xl font-bold text-green-600">32</p>
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Ongoing this week</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-md dark:border-gray-800 dark:bg-neutral-900">
+            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Revenue</h2>
+            <p class="mt-2 text-3xl font-bold text-yellow-600">$8,640</p>
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">This quarter</p>
+        </div>
+    </div>
+
+    <!-- Table dummy -->
+    <div class="mt-8 rounded-xl border border-gray-200 bg-white shadow-md dark:border-gray-800 dark:bg-neutral-900">
+        <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Recent Activities</h3>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-gray-600 dark:text-gray-300">
+                <thead class="bg-gray-50 text-gray-700 dark:bg-neutral-800 dark:text-gray-200">
+                    <tr>
+                        <th class="px-4 py-3">User</th>
+                        <th class="px-4 py-3">Action</th>
+                        <th class="px-4 py-3">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-t border-gray-200 dark:border-gray-700">
+                        <td class="px-4 py-3">John Doe</td>
+                        <td class="px-4 py-3">Created a new project</td>
+                        <td class="px-4 py-3">2025-09-07</td>
+                    </tr>
+                    <tr class="border-t border-gray-200 dark:border-gray-700">
+                        <td class="px-4 py-3">Jane Smith</td>
+                        <td class="px-4 py-3">Updated profile</td>
+                        <td class="px-4 py-3">2025-09-06</td>
+                    </tr>
+                    <tr class="border-t border-gray-200 dark:border-gray-700">
+                        <td class="px-4 py-3">Alex Johnson</td>
+                        <td class="px-4 py-3">Completed a task</td>
+                        <td class="px-4 py-3">2025-09-05</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </x-app-layout>
