@@ -13,7 +13,7 @@ class DashboardProgramController extends Controller
      */
     public function index()
     {
-        $programs = Program::latest()->paginate(10);
+        $programs = Program::with('categoryProgram')->latest()->paginate(10);
 
         return view('dashboard.programs', compact('programs'));
     }
