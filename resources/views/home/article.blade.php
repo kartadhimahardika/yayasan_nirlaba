@@ -16,8 +16,8 @@
                     <p class="text-lg text-gray-600 leading-relaxed mb-6">{{ $article->description }}
                     </p>
                     <div class="flex items-center space-x-4">
-                        <a href="">
-                            <span class="font-medium dark:text-white text-xs">
+                        <a href="/articles?author={{ $article->author->username }}">
+                            <span class="font-medium dark:text-white text-xs hover:underline">
                                 Oleh {{ $article->author->name }}
                             </span>
                         </a>

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Program;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class DashboardProgramController extends Controller
 {
@@ -13,9 +15,13 @@ class DashboardProgramController extends Controller
      */
     public function index()
     {
-        $programs = Program::with('categoryProgram')->latest()->paginate(10);
+        $programs = Program::with('categoryProgram')->latest();
 
-        return view('dashboard.programs', compact('programs'));
+        if (request('keyword')) {
+            $programs->where('title', 'like', '%' . request('keyword') . '%');
+        }
+
+        return view('dashboard.program.programs', ['programs' => $programs->paginate(10)->withQueryString()]);
     }
 
     /**
@@ -23,7 +29,7 @@ class DashboardProgramController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.program.create');
     }
 
     /**
@@ -31,15 +37,44 @@ class DashboardProgramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // $request->validate([
+        //     'title'                 => 'required|unique:programs',
+        //     'category_program_id'   => 'required',
+        //     'description'           => 'required'
+        // ]);
+
+        Validator::make($request->all(), [
+            'title'                 => 'required|unique:programs',
+            'category_program_id'   => 'required',
+            'description'           => 'required'
+        ], [
+            'title.required'              => 'Field :attribute harus diisi',
+            'category_program_id.required' => 'Field :attribute harus dipilih',
+            'dedscription.required'     => 'Field :attribute harus diisi'
+        ], [
+            'title'                 => 'Judul',
+            'category_program_id'   => 'Kategori',
+            'description'           => 'Deskripsi'
+        ])->validate();
+
+
+        Program::create([
+            'title'                 => $request->title,
+            'slug'                  => Str::slug($request->title),
+            'category_program_id'   => $request->category_program_id,
+            'description'           => $request->description,
+        ]);
+
+        return redirect('/dashboard/programs')->with(['success' => 'Program baru berhasil ditambahkan']);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Program $program)
     {
-        //
+        return view('dashboard.program.program', ['program' => $program]);
     }
 
     /**

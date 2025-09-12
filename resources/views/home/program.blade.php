@@ -13,8 +13,11 @@
                             &laquo; Kembali
                         </a>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">
-                        {{ $program->categoryProgram->name }}</h3>
+                    <a href="/programs?categoryProgram={{ $program->categoryProgram->slug }}">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6 hover:underline">
+                            {{ $program->categoryProgram->name }}
+                        </h3>
+                    </a>
                     <p class="text-lg text-gray-600 leading-relaxed mb-6">{{ $program->description }}
                     </p>
                 </div>
