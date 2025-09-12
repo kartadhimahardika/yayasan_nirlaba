@@ -1,4 +1,40 @@
 <x-app-layout>
+
+    @if (Session::has('success'))
+        <div id="toast-success" class="fixed top-5 left-1/2 -translate-x-1/2 z-50">
+            <div class="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm
+        dark:text-gray-400 dark:bg-gray-800"
+                role="alert">
+                <div
+                    class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-green-500
+            bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                        viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                    </svg>
+                    <span class="sr-only">Check icon</span>
+                </div>
+                <div class="ms-3 text-sm font-normal">{{ Session::get('success') }}</div>
+                <button type="button"
+                    class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900
+            rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100
+            inline-flex items-center justify-center h-8 w-8 dark:text-gray-500
+            dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                    data-dismiss-target="#toast-success" aria-label="Close">
+                    <span class="sr-only">Close</span>
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    @endif
+
+
+
     <div class="min-h-screen ">
 
         <div class="bg-white shadow-sm  border-gray-200 dark:bg-zinc-800 rounded-lg">
@@ -10,13 +46,31 @@
                             programs
                         </p>
                     </div>
-                    <button
+                    <div class="w-full md:w-1/2">
+                        <form class="flex items-center">
+                            <label for="simple-search" class="sr-only">Search</label>
+                            <div class="relative w-full">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                        fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <input type="text" id="simple-search" name="keyword"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Search" autocomplete="off">
+                            </div>
+                        </form>
+                    </div>
+                    <a href="/dashboard/programs/create"
                         class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
                         data-oid="7okjt1-"><svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" data-oid="5bg9z1f">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6" data-oid="f0.pu5-"></path>
-                        </svg>Add New Program</button>
+                        </svg>Add New Program</a>
                 </div>
             </div>
         </div>
@@ -27,6 +81,8 @@
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                         <thead class="bg-gray-50 dark:bg-zinc-700">
                             <tr data-oid="i2_h0xe">
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white"
+                                    data-oid="-di1jy4">#</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white"
                                     data-oid="-di1jy4">Judul Program</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white"
@@ -42,6 +98,11 @@
                         <tbody class="bg-white divide-y divide-gray-200 dark:bg-zinc-800">
                             @foreach ($programs as $program)
                                 <tr class="hover:bg-gray-50 transition-colors duration-150 dark:hover:bg-zinc-700">
+                                    <td class="px-6 py-4 whitespace-nowrap" data-oid="2965f5r">
+                                        <div class="text-sm font-medium text-gray-900 dark:text-white "
+                                            data-oid="5we3dmo">
+                                            {{ $loop->iteration }}</div>
+                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap" data-oid="2965f5r">
                                         <div class="text-sm font-medium text-gray-900 dark:text-white "
                                             data-oid="5we3dmo">
@@ -63,7 +124,20 @@
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <div class="flex items-center justify-end space-x-2" data-oid="nd2:jl1"><button
+                                        <div class="flex items-center justify-end space-x-2" data-oid="nd2:jl1">
+                                            <a href="/dashboard/programs/{{ $program->slug }}"
+                                                class="inline-flex items-center px-3 py-1.5 border border-green-300 text-xs font-medium rounded-md text-green-700 bg-white hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                </svg>
+                                                Show
+                                            </a>
+                                            <button
                                                 class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"><svg
                                                     class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24" data-oid="zt4q211">
@@ -93,10 +167,12 @@
                 </div>
             </div>
 
-            <div
-                class="bg-white px-4 py-3 flex items-center justify-between  border-gray-200 sm:px-6 mt-4 rounded-lg shadow-sm dark:bg-zinc-800">
-                {{ $programs->links() }}
-            </div>
+            @if ($programs->hasPages())
+                <div class="bg-white px-4 py-3 mt-4 rounded-lg shadow-sm border border-gray-200 dark:bg-zinc-800">
+                    {{ $programs->onEachSide(1)->withQueryString()->links() }}
+                </div>
+            @endif
+
         </div>
     </div>
 </x-app-layout>

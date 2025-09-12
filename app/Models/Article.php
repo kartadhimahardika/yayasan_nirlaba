@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Article extends Model
 {
@@ -16,5 +17,20 @@ class Article extends Model
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeFilter(Builder $query, array $filters): void
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where('title', 'like', '%' . $search . '%');
+        });
+
+        $query->when($filters['author'] ?? false, function ($query, $author) {
+            return $query->whereHas(
+                'author',
+                fn(Builder $query) =>
+                $query->where('username', $author)
+            );
+        });
     }
 }
