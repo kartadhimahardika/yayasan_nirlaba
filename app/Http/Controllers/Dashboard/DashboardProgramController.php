@@ -21,7 +21,7 @@ class DashboardProgramController extends Controller
             $programs->where('title', 'like', '%' . request('keyword') . '%');
         }
 
-        return view('dashboard.program.programs', ['programs' => $programs->paginate(10)->withQueryString()]);
+        return view('dashboard.program.index', ['programs' => $programs->paginate(10)->withQueryString()]);
     }
 
     /**
@@ -37,21 +37,14 @@ class DashboardProgramController extends Controller
      */
     public function store(Request $request)
     {
-
-        // $request->validate([
-        //     'title'                 => 'required|unique:programs',
-        //     'category_program_id'   => 'required',
-        //     'description'           => 'required'
-        // ]);
-
         Validator::make($request->all(), [
-            'title'                 => 'required|unique:programs',
+            'title'                 => 'required|unique:programs|min:4|max:255',
             'category_program_id'   => 'required',
             'description'           => 'required'
         ], [
-            'title.required'              => 'Field :attribute harus diisi',
-            'category_program_id.required' => 'Field :attribute harus dipilih',
-            'dedscription.required'     => 'Field :attribute harus diisi'
+            'title.required'                => 'Field :attribute harus diisi',
+            'category_program_id.required'  => 'Field :attribute harus dipilih',
+            'description.required'          => 'Field :attribute harus diisi'
         ], [
             'title'                 => 'Judul',
             'category_program_id'   => 'Kategori',
@@ -74,7 +67,7 @@ class DashboardProgramController extends Controller
      */
     public function show(Program $program)
     {
-        return view('dashboard.program.program', ['program' => $program]);
+        return view('dashboard.program.show', ['program' => $program]);
     }
 
     /**
