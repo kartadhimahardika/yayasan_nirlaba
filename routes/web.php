@@ -4,13 +4,16 @@ use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Home\TeamController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\ArticleController;
 use App\Http\Controllers\Home\ContactController;
 use App\Http\Controllers\Home\ProgramController;
-use App\Http\Controllers\Dashboard\DashboardArticleController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\Dashboard\DashboardUserController;
+use App\Http\Controllers\Dashboard\DashboardArticleController;
 use App\Http\Controllers\Dashboard\DashboardProgramController;
+use App\Http\Controllers\Dashboard\DashboardCategoryController;
 
 Route::get('/wellcome', function () {
     return view('welcome');
@@ -19,6 +22,7 @@ Route::get('/wellcome', function () {
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/team', [TeamController::class, 'index'])->name('team');
 Route::get('/programs', [ProgramController::class, 'index'])->name('programs');
 Route::get('/programs/{program:slug}', [ProgramController::class, 'show']);
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
@@ -54,6 +58,18 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
         Route::post('/', [DashboardArticleController::class, 'store']);
         Route::get('/create', [DashboardArticleController::class, 'create']);
         Route::get('/{article:slug}', [DashboardArticleController::class, 'show']);
+    });
+
+    // User Role
+    Route::prefix('dashboard/users')->group(function () {
+        Route::get('/', [DashboardUserController::class, 'index'])->name('dashboardUser');
+    });
+
+    // Category
+    Route::prefix('dashboard/category')->group(function () {
+        Route::get('/', [DashboardCategoryController::class, 'index'])->name('dashboardCategory');
+        Route::post('/', [DashboardCategoryController::class, 'store']);
+        Route::get('/create', [DashboardCategoryController::class, 'create']);
     });
 });
 

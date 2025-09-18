@@ -10,8 +10,9 @@
                             <span class="text-white font-bold text-sm">YN</span>
                         </div>
                     </div>
-                    <div class="ml-3">
-                        <span class="text-xl font-semibold text-gray-900">Yayasan Nirlaba</span>
+                    <div class="ml-3 leading-tight">
+                        <span class="block text-sm font-semibold text-gray-900">Panti Asuhan Hindu</span>
+                        <span class="block text-sm font-semibold text-gray-900">Dharma Jati I</span>
                     </div>
                 </div>
             </a>
@@ -22,10 +23,30 @@
                     href="{{ route('home') }}">
                     Home
                 </a>
-                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('about') ? 'border-b-2 border-indigo-400' : '' }}"
-                    href="{{ route('about') }}">
-                    About
-                </a>
+                <div x-data="{ open: false }" class="relative">
+                    <button @click="open = !open"
+                        class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium flex items-center
+        {{ request()->routeIs('about') || request()->routeIs('team') ? 'border-b-2 border-indigo-400 text-blue-600' : '' }}">
+                        Tentang Kami
+                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <div x-show="open" @click.outside="open = false"
+                        class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg py-2 z-50">
+                        <a href="{{ route('about') }}"
+                            class="block px-4 py-2 text-sm 
+            {{ request()->routeIs('about') ? 'bg-gray-100 text-blue-600 font-medium' : 'text-gray-700 hover:bg-gray-100' }}">
+                            Sejarah Yayasan
+                        </a>
+                        <a href="{{ route('team') }}"
+                            class="block px-4 py-2 text-sm 
+            {{ request()->routeIs('team') ? 'bg-gray-100 text-blue-600 font-medium' : 'text-gray-700 hover:bg-gray-100' }}">
+                            Tim Kami
+                        </a>
+                    </div>
+                </div>
                 <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('programs') ? 'border-b-2 border-indigo-400' : '' }}"
                     href="{{ route('programs') }}">
                     Programs
@@ -69,10 +90,30 @@
             href="{{ route('home') }}">
             Home
         </a>
-        <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('about') ? 'border-b-2 border-indigo-400' : '' }}"
-            href="{{ route('about') }}">
-            About
-        </a>
+        <div x-data="{ openSub: false }" class="space-y-1">
+            <button @click="openSub = !openSub"
+                class="w-full flex justify-between items-center px-3 py-2 text-sm font-medium rounded
+            {{ request()->routeIs('about') || request()->routeIs('team') ? 'bg-gray-100 text-blue-600 font-semibold border-l-4 border-indigo-500' : 'text-gray-600 hover:text-blue-600' }}">
+                Tentang Kami
+                <svg class="w-4 h-4 transform transition-transform" :class="openSub ? 'rotate-180' : ''" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <div x-show="openSub" x-transition class="pl-6 space-y-1">
+                <a href="{{ route('about') }}"
+                    class="block px-3 py-2 text-sm rounded 
+                {{ request()->routeIs('about') ? 'bg-gray-100 text-blue-600 font-medium' : 'text-gray-700 hover:bg-gray-100' }}">
+                    Sejarah Yayasan
+                </a>
+                <a href="{{ route('team') }}"
+                    class="block px-3 py-2 text-sm rounded 
+                {{ request()->routeIs('team') ? 'bg-gray-100 text-blue-600 font-medium' : 'text-gray-700 hover:bg-gray-100' }}">
+                    Tim Kami
+                </a>
+            </div>
+        </div>
+
         <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('programs') ? 'border-b-2 border-indigo-400' : '' }}"
             href="{{ route('programs') }}">
             Programs

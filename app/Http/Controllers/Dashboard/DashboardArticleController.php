@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class DashboardArticleController extends Controller
 {
@@ -21,7 +22,7 @@ class DashboardArticleController extends Controller
             $articles->where('title', 'like', '%' . request('keyword') . '%');
         }
 
-        return view('dashboard.article.articles', ['articles' => $articles->paginate(10)->withQueryString()]);
+        return view('dashboard.article.index', ['articles' => $articles->paginate(10)->withQueryString()]);
     }
 
     /**
@@ -37,6 +38,20 @@ class DashboardArticleController extends Controller
      */
     public function store(Request $request)
     {
+        Validator::make($request->all(), [
+            'title'         => 'required|unique:articles|min:4|max:255',
+            'description'   => 'required|min:20'
+        ], [
+            'title.required'        => 'Bidang :attribute harus diisi',
+            'title.min'             => ':attribute minimal harus terdiri dari :min karakter',
+            'title.max'             => ':attribute tidak boleh lebih dari :max karakter',
+            'description.required'  => 'Bidang :attribute harus diisi',
+            'description.min'       => ':attribute minimal harus terdiri dari :min karakter'
+        ], [
+            'title'         => 'Judul',
+            'description'   => 'Deskripsi'
+        ])->validate();
+
         Article::create([
             'title' => $request->title,
             'slug'  => Str::slug($request->title),
@@ -44,7 +59,7 @@ class DashboardArticleController extends Controller
             'author_id' => Auth::user()->id,
         ]);
 
-        return redirect('/dashboard/articles');
+        return redirect('/dashboard/articles')->with(['success' => 'Berita baru berhasil ditambahkan']);
     }
 
     /**
@@ -52,7 +67,7 @@ class DashboardArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view('dashboard.article.article', ['article' => $article]);
+        return view('dashboard.article.show', ['article' => $article]);
     }
 
     /**
