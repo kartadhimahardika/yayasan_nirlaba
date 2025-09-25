@@ -10,8 +10,13 @@ class DashboardUserController extends Controller
 {
     public function index()
     {
-        $users = User::latest()->paginate(10);
+        $users = User::latest();
 
-        return view('dashboard.user.index', ['users' => $users]);
+        if (request('keyword')) {
+            $users->where('name', 'like', '%' . request('keyword') . '%')
+                ->orWhere('username', 'like', '%' . request('keyword') . '%');
+        }
+
+        return view('dashboard.user.index', ['users' => $users->paginate(10)->withQueryString()]);
     }
 }

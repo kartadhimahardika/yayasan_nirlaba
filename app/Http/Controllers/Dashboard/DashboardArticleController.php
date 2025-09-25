@@ -73,24 +73,46 @@ class DashboardArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Article $article)
     {
-        //
+        return view('dashboard.article.edit', ['article' => $article]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Article $article)
     {
-        //
+        Validator::make($request->all(), [
+            'title'         => 'required|unique:articles|min:4|max:255',
+            'description'   => 'required|min:20'
+        ], [
+            'title.required'        => 'Bidang :attribute harus diisi',
+            'title.min'             => ':attribute minimal harus terdiri dari :min karakter',
+            'title.max'             => ':attribute tidak boleh lebih dari :max karakter',
+            'description.required'  => 'Bidang :attribute harus diisi',
+            'description.min'       => ':attribute minimal harus terdiri dari :min karakter'
+        ], [
+            'title'         => 'Judul',
+            'description'   => 'Deskripsi'
+        ])->validate();
+
+        $article->update([
+            'title' => $request->title,
+            'slug'  => Str::slug($request->title),
+            'description' => $request->description,
+            'author_id' => Auth::user()->id,
+        ]);
+
+        return redirect('/dashboard/articles')->with(['success' => 'Berita berhasil diedit']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect('/dashboard/articles')->with(['success' => 'Berita berhasil dihapus']);
     }
 }

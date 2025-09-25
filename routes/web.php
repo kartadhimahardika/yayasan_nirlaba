@@ -49,6 +49,9 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
         Route::get('/', [DashboardProgramController::class, 'index'])->name('dashboardPrograms');
         Route::post('/', [DashboardProgramController::class, 'store']);
         Route::get('/create', [DashboardProgramController::class, 'create']);
+        Route::delete('/{program:slug}', [DashboardProgramController::class, 'destroy']);
+        Route::get('/{program:slug}/edit', [DashboardProgramController::class, 'edit']);
+        Route::patch('/{program:slug}', [DashboardProgramController::class, 'update']);
         Route::get('/{program:slug}', [DashboardProgramController::class, 'show']);
     });
 
@@ -57,6 +60,9 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
         Route::get('/', [DashboardArticleController::class, 'index'])->name('dashboardArticle');
         Route::post('/', [DashboardArticleController::class, 'store']);
         Route::get('/create', [DashboardArticleController::class, 'create']);
+        Route::delete('/{article:slug}', [DashboardArticleController::class, 'destroy']);
+        Route::get('/{article:slug}/edit', [DashboardArticleController::class, 'edit']);
+        Route::patch('/{article:slug}', [DashboardArticleController::class, 'update']);
         Route::get('/{article:slug}', [DashboardArticleController::class, 'show']);
     });
 

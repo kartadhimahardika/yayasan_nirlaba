@@ -172,37 +172,25 @@
     <section class="py-20 bg-gray-50" data-oid="contact-map-section">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-oid="contact-map-container">
             <div class="text-center mb-12" data-oid="contact-map-header">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-oid="contact-map-title">Visit Our
-                    Office</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-oid="contact-map-subtitle">Located in the
-                    heart of
-                    New York City, our office is open for meetings, volunteer orientations, and community events.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-oid="contact-map-title">
+                    Visit Our Office
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-oid="contact-map-subtitle">
+                    Located in the heart of New York City, our office is open for meetings,
+                    volunteer orientations, and community events.
+                </p>
             </div>
+
+            <!-- Map Wrapper -->
             <div class="bg-white rounded-2xl shadow-lg overflow-hidden" data-oid="contact-map-wrapper">
-                <div class="h-96 bg-gradient-to-br from-blue-100 to-green-100 flex items-center justify-center"
-                    data-oid="contact-map-placeholder">
-                    <div class="text-center" data-oid="contact-map-placeholder-content">
-                        <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4"
-                            data-oid="contact-map-icon"><svg class="w-10 h-10 text-white" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24" data-oid="contact-map-svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                                    data-oid="35b8tvx"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" data-oid="ikplleu"></path>
-                            </svg></div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2" data-oid="contact-map-placeholder-title">
-                            Interactive Map</h3>
-                        <p class="text-gray-600" data-oid="contact-map-placeholder-text">Google Maps integration would
-                            be
-                            embedded here</p>
-                        <p class="text-sm text-gray-500 mt-2" data-oid="contact-map-placeholder-address">123 Hope
-                            Street,
-                            New York, NY 10001</p>
-                    </div>
-                </div>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.6823417383985!2d115.36333117589594!3d-8.530188286429391!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd216c5710a4953%3A0xc258bd9c49fbe020!2sPanti%20Asuhan%20Hindu%20Dharma%20Jati%201!5e0!3m2!1sid!2sid!4v1758290217341!5m2!1sid!2sid"
+                    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" data-oid="contact-map-iframe">
+                </iframe>
             </div>
         </div>
     </section>
+
 
 </x-layout>
