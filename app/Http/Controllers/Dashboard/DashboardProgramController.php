@@ -73,24 +73,46 @@ class DashboardProgramController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Program $program)
     {
-        //
+        return view('dashboard.program.edit', ['program' => $program]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Program $program)
     {
-        //
+        Validator::make($request->all(), [
+            'title'                 => 'required|min:4|max:255|unique:programs,title,' . $program->id,
+            'category_program_id'   => 'required',
+            'description'           => 'required'
+        ], [
+            'title.required'                => 'Field :attribute harus diisi',
+            'category_program_id.required'  => 'Field :attribute harus dipilih',
+            'description.required'          => 'Field :attribute harus diisi'
+        ], [
+            'title'                 => 'Judul',
+            'category_program_id'   => 'Kategori',
+            'description'           => 'Deskripsi'
+        ])->validate();
+
+        $program->update([
+            'title'                 => $request->title,
+            'slug'                  => Str::slug($request->title),
+            'category_program_id'   => $request->category_program_id,
+            'description'           => $request->description,
+        ]);
+
+        return redirect('/dashboard/programs')->with(['success' => 'Program baru berhasil diedit']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Program $program)
     {
-        //
+        $program->delete();
+        return redirect('/dashboard/programs')->with(['success' => 'Program berhasil dihapus']);
     }
 }

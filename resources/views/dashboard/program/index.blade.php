@@ -17,7 +17,7 @@
                 </div>
                 <div class="ms-3 text-sm font-normal">{{ Session::get('success') }}</div>
                 <button type="button"
-                    class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900
+                    class="cursor-pointer ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900
             rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100
             inline-flex items-center justify-center h-8 w-8 dark:text-gray-500
             dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
@@ -33,15 +33,13 @@
         </div>
     @endif
 
-
-
     <div class="min-h-screen ">
 
         <div class="bg-white shadow-sm  border-gray-200 dark:bg-zinc-800 rounded-lg">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center py-6">
-                    <div data-oid="tsb2sel">
-                        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Program Management</h1>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Manajemen Program</h1>
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Manage and organize your educational
                             programs
                         </p>
@@ -60,59 +58,62 @@
                                 </div>
                                 <input type="text" id="simple-search" name="keyword"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Search" autocomplete="off">
+                                    placeholder="Cari judul program" autocomplete="off">
                             </div>
                         </form>
                     </div>
                     <a href="/dashboard/programs/create"
-                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
-                        data-oid="7okjt1-"><svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" data-oid="5bg9z1f">
+                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"><svg
+                            class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 6v6m0 0v6m0-6h6m-6 0H6" data-oid="f0.pu5-"></path>
-                        </svg>Add New Program</a>
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>Tambah Program Baru</a>
                 </div>
             </div>
         </div>
 
         <div class=" dark:bg-zinc-800 rounded-lg mt-4">
             <div class="bg-white shadow-sm rounded-lg overflow-hidden dark:bg-zinc-800">
-                <div class="overflow-x-auto" data-oid="_4ijd0l">
+                <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                         <thead class="bg-gray-50 dark:bg-zinc-700">
-                            <tr data-oid="i2_h0xe">
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white"
-                                    data-oid="-di1jy4">#</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white"
-                                    data-oid="-di1jy4">Judul Program</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white"
-                                    data-oid="v2ox1eh">Kategori</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white"
-                                    data-oid="o84nb.r">Dibuat Pada</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white"
-                                    data-oid="wifi6iy">Isi</th>
-                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white"
-                                    data-oid="7agcw93">Actions</th>
+                            <tr>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white">
+                                    #</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white">
+                                    Judul Program</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white">
+                                    Kategori</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white">
+                                    Dibuat Pada</th>
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white">
+                                    Isi</th>
+                                <th
+                                    class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white">
+                                    Actions</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200 dark:bg-zinc-800">
                             @foreach ($programs as $program)
                                 <tr class="hover:bg-gray-50 transition-colors duration-150 dark:hover:bg-zinc-700">
-                                    <td class="px-6 py-4 whitespace-nowrap" data-oid="2965f5r">
-                                        <div class="text-sm font-medium text-gray-900 dark:text-white "
-                                            data-oid="5we3dmo">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900 dark:text-white ">
                                             {{ $loop->iteration }}</div>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap" data-oid="2965f5r">
-                                        <div class="text-sm font-medium text-gray-900 dark:text-white "
-                                            data-oid="5we3dmo">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900 dark:text-white ">
                                             {!! Str::limit(strip_tags($program->title), 30) !!}</div>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap" data-oid="_i:46x.">
-                                        <div class="text-sm text-gray-500 dark:text-white" data-oid="i0r.h39">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-500 dark:text-white">
                                             {{ $program->categoryProgram->name }}</div>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap" data-oid=":k_z81e">
+                                    <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-500 dark:text-white">
                                             {{ $program->created_at->format('d F Y') }}
                                         </div>
@@ -124,7 +125,7 @@
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <div class="flex items-center justify-end space-x-2" data-oid="nd2:jl1">
+                                        <div class="flex items-center justify-end space-x-2">
                                             <a href="/dashboard/programs/{{ $program->slug }}"
                                                 class="inline-flex items-center px-3 py-1.5 border border-green-300 text-xs font-medium rounded-md text-green-700 bg-white hover:bg-green-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200">
                                                 <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
@@ -135,32 +136,89 @@
                                                         stroke-width="2"
                                                         d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                 </svg>
-                                                Show
+                                                Lihat
                                             </a>
-                                            <button
+                                            <a href="/dashboard/programs/{{ $program->slug }}/edit"
                                                 class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"><svg
                                                     class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24" data-oid="zt4q211">
+                                                    viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         stroke-width="2"
-                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                                        data-oid="xrq.ppx"></path>
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                    </path>
                                                 </svg>
                                                 Edit
-                                            </button>
-                                            <button
-                                                class="inline-flex items-center px-3 py-1.5 border border-red-300 text-xs font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
-                                                data-oid="_k-fdfx"><svg class="w-4 h-4 mr-1" fill="none"
-                                                    stroke="currentColor" viewBox="0 0 24 24" data-oid=".6sy:0y">
+                                            </a>
+                                            <button data-modal-target="deleteModal-{{ $program->id }}"
+                                                data-modal-toggle="deleteModal-{{ $program->id }}"
+                                                class="inline-flex items-center px-3 py-1.5 border border-red-300 text-xs font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200 cursor-pointer">
+                                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         stroke-width="2"
-                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                                                        data-oid="8qabq-x"></path>
-                                                </svg>Delete
+                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                    </path>
+                                                </svg>
+                                                Hapus
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
+
+                                <!-- Delete Modal -->
+                                <div id="deleteModal-{{ $program->id }}" tabindex="-1" aria-hidden="true"
+                                    class="hidden overflow-y-auto overflow-x-hidden fixed inset-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                    <div class="relative p-4 w-full max-w-md max-h-full">
+                                        <!-- Modal content -->
+                                        <div
+                                            class="relative p-4 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+                                            <!-- Close button -->
+                                            <button type="button"
+                                                class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer"
+                                                data-modal-toggle="deleteModal-{{ $program->id }}">
+                                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor"
+                                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                                <span class="sr-only">Close modal</span>
+                                            </button>
+
+                                            <!-- Icon -->
+                                            <svg class="text-gray-400 dark:text-gray-500 w-11 h-11 mb-3.5 mx-auto"
+                                                aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+
+                                            <!-- Text -->
+                                            <p class="mb-4 text-gray-500 dark:text-gray-300">
+                                                Apakah anda yakin ingin menghapus <b>{{ $program->title }}</b> ?
+                                            </p>
+
+                                            <!-- Buttons -->
+                                            <div class="flex justify-center items-center space-x-4">
+                                                <button data-modal-toggle="deleteModal-{{ $program->id }}"
+                                                    type="button"
+                                                    class="cursor-pointer py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                                                    Batal
+                                                </button>
+                                                <form action="/dashboard/programs/{{ $program->slug }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="cursor-pointer py-2 px-3 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
+                                                        Ya, Saya yakin
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
                         </tbody>
                     </table>

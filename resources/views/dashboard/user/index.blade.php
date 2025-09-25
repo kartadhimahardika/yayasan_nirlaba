@@ -5,14 +5,13 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center py-6">
                     <div data-oid="tsb2sel">
-                        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Program Management</h1>
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Manage and organize your educational
-                            programs
+                        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Manajemen Pengguna</h1>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Manajeman pengguna anda disini
                         </p>
                     </div>
                     <div class="w-full md:w-1/2">
                         <form class="flex items-center">
-                            <label for="simple-search" class="sr-only">Search</label>
+                            <label for="simple-search" class="sr-only">Cari</label>
                             <div class="relative w-full">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                     <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400"
@@ -24,17 +23,10 @@
                                 </div>
                                 <input type="text" id="simple-search" name="keyword"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Search" autocomplete="off">
+                                    placeholder="Cari nama atau nama pengguna" autocomplete="off">
                             </div>
                         </form>
                     </div>
-                    <a href="/dashboard/programs/create"
-                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
-                        data-oid="7okjt1-"><svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" data-oid="5bg9z1f">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 6v6m0 0v6m0-6h6m-6 0H6" data-oid="f0.pu5-"></path>
-                        </svg>Add New Program</a>
                 </div>
             </div>
         </div>
@@ -98,7 +90,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <div class="flex items-center justify-start space-x-2" data-oid="nd2:jl1">
 
-                                            <button
+                                            <a href="#"
                                                 class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"><svg
                                                     class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24" data-oid="zt4q211">
@@ -108,7 +100,7 @@
                                                         data-oid="xrq.ppx"></path>
                                                 </svg>
                                                 Edit
-                                            </button>
+                                            </a>
 
                                         </div>
                                     </td>
