@@ -4,14 +4,13 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                    Building a Better
+                    Panti Asuhan Hindu
                     <span class="text-blue-600">
-                        Tomorrow
+                        Dharma Jati I
                     </span>
                 </h1>
                 <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                    Join us in creating lasting change through education, community support, and sustainable
-                    initiatives that empower communities worldwide.
+                    Membina dengan cinta, Mewujudkan masa depan cerah!
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <button
