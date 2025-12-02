@@ -9,6 +9,7 @@ use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\ArticleController;
 use App\Http\Controllers\Home\ContactController;
 use App\Http\Controllers\Home\ProgramController;
+use App\Http\Controllers\Home\DonationController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Dashboard\DashboardUserController;
 use App\Http\Controllers\Dashboard\DashboardArticleController;
@@ -22,12 +23,14 @@ Route::get('/wellcome', function () {
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
-Route::get('/team', [TeamController::class, 'index'])->name('team');
 Route::get('/programs', [ProgramController::class, 'index'])->name('programs');
 Route::get('/programs/{program:slug}', [ProgramController::class, 'show']);
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
 Route::get('/articles/{article:slug}', [ArticleController::class, 'show']);
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/donation', [DonationController::class, 'index'])->name('donation');
+Route::get('/donation/{donation:slug}', [DonationController::class, 'show'])->name('donation');
+Route::get('/confirm', [DonationController::class, 'create'])->name('donation');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
