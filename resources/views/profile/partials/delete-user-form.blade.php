@@ -1,4 +1,4 @@
-<section class="space-y-6">
+{{-- <section class="space-y-6">
     <header>
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Delete Account') }}
@@ -52,4 +52,28 @@
             </div>
         </form>
     </x-modal>
-</section>
+</section> --}}
+
+<form method="post" action="{{ route('profile.destroy') }}" class="space-y-6">
+    @csrf
+    @method('delete')
+
+    <p class="text-sm text-gray-600">
+        Menghapus akun akan menghilangkan seluruh data Anda secara permanen. Tindakan ini tidak dapat dibatalkan.
+    </p>
+
+    <div>
+        <label for="password" class="block font-medium text-gray-700">Konfirmasi Password</label>
+        <input id="password" name="password" type="password" placeholder="Masukkan password untuk menghapus akun"
+            class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-red-500 focus:border-red-500" />
+        @error('password')
+            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div class="flex justify-end">
+        <button type="submit" class="px-5 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
+            Hapus Akun
+        </button>
+    </div>
+</form>
