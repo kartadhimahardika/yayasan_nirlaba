@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\DashboardAdminController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -70,8 +71,10 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
     });
 
     // User Role
-    Route::prefix('dashboard/users')->group(function () {
-        Route::get('/', [DashboardUserController::class, 'index'])->name('dashboardUser');
+    Route::prefix('dashboard/admin')->group(function () {
+        Route::get('/', [DashboardAdminController::class, 'index'])->name('dashboardAdmin');
+        Route::post('/', [DashboardAdminController::class, 'store']);
+        Route::get('/create', [DashboardAdminController::class, 'create']);
     });
 
     // Category

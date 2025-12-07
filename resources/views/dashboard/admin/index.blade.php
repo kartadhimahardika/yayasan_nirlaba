@@ -1,12 +1,37 @@
 <x-app-layout>
+
+    @if (Session::has('success'))
+        <div id="toast-success"
+            class="fixed top-3 left-1/2 -translate-x-1/2 z-50
+           bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200
+           px-5 py-3 rounded-xl shadow-lg
+           flex items-center gap-3 border border-green-500/40
+           transform transition-all duration-500
+           opacity-0 -translate-y-5">
+
+            <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+
+            <span class="font-medium">{{ Session::get('success') }}</span>
+
+            <button onclick="document.getElementById('toast-success').remove()"
+                class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 ml-2">
+                ✕
+            </button>
+        </div>
+    @endif
+
     <div class="min-h-screen ">
 
         <div class="bg-white shadow-sm  border-gray-200 dark:bg-zinc-800 rounded-lg">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center py-6">
                     <div data-oid="tsb2sel">
-                        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Manajemen Pengguna</h1>
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Manajeman pengguna anda disini
+                        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Manajemen Admin</h1>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Manajeman admin anda disini
                         </p>
                     </div>
                     <div class="w-full md:w-1/2">
@@ -27,6 +52,12 @@
                             </div>
                         </form>
                     </div>
+                    <a href="/dashboard/admin/create"
+                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"><svg
+                            class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>Tambah Admin</a>
                 </div>
             </div>
         </div>
@@ -46,11 +77,8 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white"
                                     data-oid="o84nb.r">Email</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white"
-                                    data-oid="wifi6iy">Role</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white"
                                     data-oid="wifi6iy">Bergabung Pada</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white"
-                                    data-oid="wifi6iy">Aksi</th>
+
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200 dark:bg-zinc-800">
@@ -76,34 +104,12 @@
                                             {{ $user->email }}
                                         </div>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap dark:text-white">
-                                        <span
-                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-mediu">
-                                            {{ $user->role }}
-                                        </span>
-                                    </td>
                                     <td class="px-6 py-4 whitespace-nowrap" data-oid=":k_z81e">
                                         <div class="text-sm text-gray-500 dark:text-white">
                                             {{ $user->created_at->format('d F Y') }}
                                         </div>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <div class="flex items-center justify-start space-x-2" data-oid="nd2:jl1">
 
-                                            <a href="#"
-                                                class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"><svg
-                                                    class="w-4 h-4 mr-1" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24" data-oid="zt4q211">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                                                        data-oid="xrq.ppx"></path>
-                                                </svg>
-                                                Edit
-                                            </a>
-
-                                        </div>
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

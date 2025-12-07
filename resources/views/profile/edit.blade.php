@@ -38,6 +38,8 @@
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 space-y-10">
 
+
+
             {{-- Update Profile --}}
             <div class="bg-white shadow-md rounded-xl p-8">
                 <h3 class="text-lg font-semibold mb-6">Informasi Profil</h3>

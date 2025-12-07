@@ -1,5 +1,30 @@
 <x-layout>
 
+    @if (Session::has('success'))
+        <div id="toast-success"
+            class="fixed top-3 left-1/2 -translate-x-1/2 z-50
+           bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200
+           px-5 py-3 rounded-xl shadow-lg
+           flex items-center gap-3 border border-green-500/40
+           transform transition-all duration-500
+           opacity-0 -translate-y-5">
+
+            <!-- Circle with check -->
+            <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+
+            <span class="font-medium">{{ Session::get('success') }}</span>
+
+            <button onclick="document.getElementById('toast-success').remove()"
+                class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 ml-2">
+                ✕
+            </button>
+        </div>
+    @endif
+
     <section class="bg-gradient-to-br from-blue-50 to-green-50 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
