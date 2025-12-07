@@ -59,7 +59,7 @@ class DashboardArticleController extends Controller
             'author_id' => Auth::user()->id,
         ]);
 
-        return redirect('/dashboard/articles')->with(['success' => 'Berita baru berhasil ditambahkan']);
+        return redirect('/dashboard/articles')->with(['success' => 'Artikel baru berhasil ditambahkan']);
     }
 
     /**
@@ -84,7 +84,7 @@ class DashboardArticleController extends Controller
     public function update(Request $request, Article $article)
     {
         Validator::make($request->all(), [
-            'title'         => 'required|unique:articles|min:4|max:255',
+            'title'         => 'required|min:4|max:255|unique:articles,title,' . $article->id,
             'description'   => 'required|min:20'
         ], [
             'title.required'        => 'Bidang :attribute harus diisi',
@@ -104,7 +104,7 @@ class DashboardArticleController extends Controller
             'author_id' => Auth::user()->id,
         ]);
 
-        return redirect('/dashboard/articles')->with(['success' => 'Berita berhasil diedit']);
+        return redirect('/dashboard/articles')->with(['success' => 'Artikel berhasil diedit']);
     }
 
     /**
@@ -113,6 +113,6 @@ class DashboardArticleController extends Controller
     public function destroy(Article $article)
     {
         $article->delete();
-        return redirect('/dashboard/articles')->with(['success' => 'Berita berhasil dihapus']);
+        return redirect('/dashboard/articles')->with(['success' => 'Artikel berhasil dihapus']);
     }
 }

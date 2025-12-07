@@ -19,7 +19,6 @@ class DonationFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
             'slug' => Str::slug($this->faker->name . '-' . Str::random(6)),
             'name' => $this->faker->name(),
             'phone' => $this->faker->phoneNumber(),

@@ -1,37 +1,28 @@
 <x-app-layout>
+
     @if (Session::has('success'))
-        <div id="toast-success" class="fixed top-5 left-1/2 -translate-x-1/2 z-50">
-            <div class="flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm
-        dark:text-gray-400 dark:bg-gray-800"
-                role="alert">
-                <div
-                    class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-green-500
-            bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                        viewBox="0 0 20 20">
-                        <path
-                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                    </svg>
-                    <span class="sr-only">Check icon</span>
-                </div>
-                <div class="ms-3 text-sm font-normal">{{ Session::get('success') }}</div>
-                <button type="button"
-                    class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900
-            rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100
-            inline-flex items-center justify-center h-8 w-8 dark:text-gray-500
-            dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-                    data-dismiss-target="#toast-success" aria-label="Close">
-                    <span class="sr-only">Close</span>
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                    </svg>
-                </button>
+        <div id="toast-success"
+            class="fixed top-3 left-1/2 -translate-x-1/2 z-50
+           bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200
+           px-5 py-3 rounded-xl shadow-lg
+           flex items-center gap-3 border border-green-500/40
+           transform transition-all duration-500
+           opacity-0 -translate-y-5">
+
+            <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                </svg>
             </div>
+
+            <span class="font-medium">{{ Session::get('success') }}</span>
+
+            <button onclick="document.getElementById('toast-success').remove()"
+                class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 ml-2">
+                ✕
+            </button>
         </div>
     @endif
-
 
     <div class="min-h-screen ">
 
@@ -39,14 +30,14 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center py-6">
                     <div>
-                        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Manajemen Berita</h1>
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Berita Oleh : {{ Auth::user()->name }}
+                        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Manajemen Artikel</h1>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Artikel Oleh : {{ Auth::user()->name }}
                         </p>
                     </div>
                     <div class="w-full md:w-1/2">
 
                         <form class="flex items-center">
-                            <label for="simple-search" class="sr-only">Cari Berita</label>
+                            <label for="simple-search" class="sr-only">Cari Artikel</label>
                             <div class="relative w-full">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                     <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400"
@@ -68,7 +59,7 @@
                             class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                        </svg>Tambah Berita</a>
+                        </svg>Tambah Artikel</a>
                 </div>
             </div>
         </div>
@@ -84,7 +75,7 @@
                                     #</th>
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white">
-                                    Judul Berita</th>
+                                    Judul Artikel</th>
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white">
                                     Deskripsi</th>
