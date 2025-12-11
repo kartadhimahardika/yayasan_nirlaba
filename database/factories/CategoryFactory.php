@@ -3,21 +3,20 @@
 namespace Database\Factories;
 
 use Illuminate\Support\Str;
-use App\Models\CategoryProgram;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CategoryProgram>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class CategoryProgramFactory extends Factory
+class CategoryFactory extends Factory
 {
-    protected $model = CategoryProgram::class;
+    protected $model = Category::class;
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-
     public function definition(): array
     {
         $category_name = fake()->sentence(rand(1, 3), false);

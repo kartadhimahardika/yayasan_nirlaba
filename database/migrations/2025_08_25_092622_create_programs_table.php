@@ -16,10 +16,11 @@ return new class extends Migration
             // $table->foreignId('category_program_id')->constrained('category_programs')->onDelete('cascade');
             $table->string('title');
             $table->string('slug')->unique();
-            $table->foreignId('category_program_id')->constrained(
-                table: 'category_programs',
+            $table->foreignId('category_id')->constrained(
+                table: 'categories',
                 indexName: 'programs_category_id'
-            );
+            )
+                ->cascadeOnDelete();
             $table->string('photo')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();

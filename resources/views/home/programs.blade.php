@@ -15,8 +15,8 @@
 
 
             <form class="mb-8 max-w-md mx-auto">
-                @if (request('categoryProgram'))
-                    <input type="hidden" name="categoryProgram" value="{{ request('categoryProgram') }}">
+                @if (request('category'))
+                    <input type="hidden" name="category" value="{{ request('category') }}">
                 @endif
                 <label for="default-search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -46,10 +46,10 @@
                             <img src="/images/unsplash.jpg" alt="Education Program" class="w-full h-full object-cover">
                         </div>
                         <div class="p-8">
-                            <a href="/programs?categoryProgram={{ $program->categoryProgram->slug }}">
+                            <a href="/programs?category={{ $program->category->slug }}">
                                 <span
                                     class="inline-block bg-blue-100 hover:bg-blue-200 text-blue-700 text-sm font-medium px-3 py-1 rounded-full mb-3">
-                                    {{ $program->categoryProgram->name }}
+                                    {{ $program->category->name }}
                                 </span>
                             </a>
                             <a href="/programs/{{ $program->slug }}" class="hover:underline">

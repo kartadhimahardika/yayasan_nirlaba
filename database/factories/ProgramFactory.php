@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Program;
 use Illuminate\Support\Str;
-use App\Models\CategoryProgram;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -24,7 +24,7 @@ class ProgramFactory extends Factory
         $title = $this->faker->sentence(rand(6, 8));
 
         return [
-            'category_program_id' => CategoryProgram::factory(),
+            'category_id' => Category::factory(),
             'title'       => $title,
             'slug'        => Str::slug($title) . '-' . Str::random(5),
             'photo'       => $this->faker->imageUrl(640, 480, 'program', true),

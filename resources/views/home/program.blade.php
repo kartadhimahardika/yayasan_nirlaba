@@ -11,10 +11,10 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
 
                     <div class="absolute top-6 left-6">
-                        <a href="/programs?categoryProgram={{ $program->categoryProgram->slug }}">
+                        <a href="/programs?category={{ $program->category->slug }}">
                             <span
                                 class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-100 text-blue-800 backdrop-blur-sm">
-                                {{ $program->categoryProgram->name }}
+                                {{ $program->category->name }}
                             </span>
                         </a>
                     </div>

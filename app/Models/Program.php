@@ -11,16 +11,16 @@ class Program extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category_program_id',
+        'category_id',
         'title',
         'slug',
         'photo',
         'description',
     ];
 
-    public function categoryProgram()
+    public function category()
     {
-        return $this->belongsTo(CategoryProgram::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function scopeFilter(Builder $query, array $filters): void
@@ -29,9 +29,9 @@ class Program extends Model
             return $query->where('title', 'like', '%' . $search . '%');
         });
 
-        $query->when($filters['categoryProgram'] ?? false, function ($query, $category) {
+        $query->when($filters['category'] ?? false, function ($query, $category) {
             return $query->whereHas(
-                'categoryProgram',
+                'category',
                 fn(Builder $query) =>
                 $query->where('slug', $category)
             );
