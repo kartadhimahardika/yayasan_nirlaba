@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\CategoryProgram;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,7 +15,7 @@ class DashboardCategoryController extends Controller
      */
     public function index()
     {
-        $categories = CategoryProgram::latest();
+        $categories = Category::latest();
 
         if (request('keyword')) {
             $categories->where('name', 'like', '%' . request('keyword') . '%');
@@ -48,7 +48,7 @@ class DashboardCategoryController extends Controller
             'name' => 'Kategori'
         ])->validate();
 
-        CategoryProgram::create([
+        Category::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
         ]);

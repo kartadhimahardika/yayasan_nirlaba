@@ -23,18 +23,18 @@
                 @enderror
             </div>
             <div class="mb-4 col-span-2 sm:col-span-1">
-                <label for="category_program_id"
+                <label for="category_id"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kategori</label>
-                <select name="category_program_id" id="category_program_id"
-                    class="@error('category_program_id')
+                <select name="category_id" id="category_id"
+                    class="@error('category_id')
                        bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
                     @enderror border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                     <option selected="" value="">Pilih Kategori</option>
-                    @foreach (App\Models\CategoryProgram::get() as $category)
-                        <option value="{{ $category->id }}" @selected((old('category_program_id') ?? $program->categoryProgram->id) == $category->id)>{{ $category->name }}</option>
+                    @foreach (App\Models\Category::get() as $category)
+                        <option value="{{ $category->id }}" @selected((old('category_id') ?? $program->category->id) == $category->id)>{{ $category->name }}</option>
                     @endforeach
                 </select>
-                @error('category_program_id')
+                @error('category_id')
                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                 @enderror
             </div>

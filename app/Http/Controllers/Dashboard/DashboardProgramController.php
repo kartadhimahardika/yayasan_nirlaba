@@ -15,7 +15,7 @@ class DashboardProgramController extends Controller
      */
     public function index()
     {
-        $programs = Program::with('categoryProgram')->latest();
+        $programs = Program::with('category')->latest();
 
         if (request('keyword')) {
             $programs->where('title', 'like', '%' . request('keyword') . '%');
@@ -39,15 +39,15 @@ class DashboardProgramController extends Controller
     {
         Validator::make($request->all(), [
             'title'                 => 'required|unique:programs|min:4|max:255',
-            'category_program_id'   => 'required',
+            'category_id'   => 'required',
             'description'           => 'required'
         ], [
             'title.required'                => 'Field :attribute harus diisi',
-            'category_program_id.required'  => 'Field :attribute harus dipilih',
+            'category_id.required'  => 'Field :attribute harus dipilih',
             'description.required'          => 'Field :attribute harus diisi'
         ], [
             'title'                 => 'Judul',
-            'category_program_id'   => 'Kategori',
+            'category_id'   => 'Kategori',
             'description'           => 'Deskripsi'
         ])->validate();
 
@@ -55,7 +55,7 @@ class DashboardProgramController extends Controller
         Program::create([
             'title'                 => $request->title,
             'slug'                  => Str::slug($request->title),
-            'category_program_id'   => $request->category_program_id,
+            'category_id'   => $request->category_id,
             'description'           => $request->description,
         ]);
 
@@ -85,22 +85,22 @@ class DashboardProgramController extends Controller
     {
         Validator::make($request->all(), [
             'title'                 => 'required|min:4|max:255|unique:programs,title,' . $program->id,
-            'category_program_id'   => 'required',
+            'category_id'   => 'required',
             'description'           => 'required'
         ], [
             'title.required'                => 'Field :attribute harus diisi',
-            'category_program_id.required'  => 'Field :attribute harus dipilih',
+            'category_id.required'  => 'Field :attribute harus dipilih',
             'description.required'          => 'Field :attribute harus diisi'
         ], [
             'title'                 => 'Judul',
-            'category_program_id'   => 'Kategori',
+            'category_id'   => 'Kategori',
             'description'           => 'Deskripsi'
         ])->validate();
 
         $program->update([
             'title'                 => $request->title,
             'slug'                  => Str::slug($request->title),
-            'category_program_id'   => $request->category_program_id,
+            'category_id'   => $request->category_id,
             'description'           => $request->description,
         ]);
 

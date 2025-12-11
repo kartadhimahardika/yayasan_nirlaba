@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class CategoryProgram extends Model
+class Category extends Model
 {
     use HasFactory;
 
@@ -16,6 +16,6 @@ class CategoryProgram extends Model
 
     public function programs()
     {
-        return $this->hasMany(Program::class, 'category_program_id');
+        return $this->hasMany(Program::class, 'category_id');
     }
 }
