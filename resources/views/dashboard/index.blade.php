@@ -28,28 +28,42 @@
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <!-- Card 1 -->
         <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-md dark:border-gray-800 dark:bg-neutral-900">
-            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Total Users</h2>
-            <p class="mt-2 text-3xl font-bold text-indigo-600">1,250</p>
-            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Compared to last month: +12%</p>
+            <a href="/dashboard/category"
+                class="text-lg font-semibold text-gray-800 dark:text-gray-200 hover:underline">Kategori
+                Program</a>
+            <p class="mt-2 text-3xl font-bold text-indigo-600">{{ $jumlahKategori }}</p>
         </div>
 
         <!-- Card 2 -->
         <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-md dark:border-gray-800 dark:bg-neutral-900">
-            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Active Projects</h2>
-            <p class="mt-2 text-3xl font-bold text-green-600">32</p>
-            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Ongoing this week</p>
+            <a href="/dashboard/programs"
+                class="text-lg font-semibold text-gray-800 dark:text-gray-200 hover:underline">Program</a>
+            <p class="mt-2 text-3xl font-bold text-green-600">{{ $jumlahProgram }}</p>
         </div>
 
         <!-- Card 3 -->
         <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-md dark:border-gray-800 dark:bg-neutral-900">
-            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Revenue</h2>
-            <p class="mt-2 text-3xl font-bold text-yellow-600">$8,640</p>
-            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">This quarter</p>
+            <a href="/dashboard/articles"
+                class="text-lg font-semibold text-gray-800 dark:text-gray-200 hover:underline">Artikel</a>
+            <p class="mt-2 text-3xl font-bold text-yellow-600">{{ $jumlahArtikel }}</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-md dark:border-gray-800 dark:bg-neutral-900">
+            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Total Donasi</h2>
+            <p class="mt-2 text-3xl font-bold text-blue-600">{{ $jumlahDonation }}</p>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-md dark:border-gray-800 dark:bg-neutral-900">
+            <a href="/dashboard/admin"
+                class="text-lg font-semibold text-gray-800 dark:text-gray-200 hover:underline">Admin</a>
+            <p class="mt-2 text-3xl font-bold text-red-600">{{ $jumlahAdmin }}</p>
         </div>
     </div>
 
     <!-- Table dummy -->
-    <div class="mt-8 rounded-xl border border-gray-200 bg-white shadow-md dark:border-gray-800 dark:bg-neutral-900">
+    {{-- <div class="mt-8 rounded-xl border border-gray-200 bg-white shadow-md dark:border-gray-800 dark:bg-neutral-900">
         <div class="p-4 border-b border-gray-200 dark:border-gray-700">
             <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Recent Activities</h3>
         </div>
@@ -81,5 +95,5 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div> --}}
 </x-app-layout>

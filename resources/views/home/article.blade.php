@@ -28,8 +28,8 @@
 
                     <p class="text-gray-600 mb-6 text-lg">
                         Ditulis oleh
-                        <a href="/articles?author={{ $article->author->username }}"><span
-                                class="font-semibold text-gray-800">{{ $article->author->name }}</span></a>
+                        <a href="/articles?user={{ $article->user->username }}"><span
+                                class="font-semibold text-gray-800 hover:underline">{{ $article->user->name }}</span></a>
                     </p>
 
                     <div class="prose prose-lg max-w-none">

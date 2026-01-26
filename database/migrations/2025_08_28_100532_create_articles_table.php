@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('photo')->nullable();
             $table->text('description');
-            $table->foreignId('author_id')
+            $table->foreignId('user_id')
                 ->constrained(
                     table: 'users',
-                    indexName: 'articles_author_id'
+                    indexName: 'articles_user_id'
                 )
                 ->cascadeOnDelete();
             $table->timestamps();

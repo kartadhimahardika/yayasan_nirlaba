@@ -11,7 +11,7 @@ class ProgramController extends Controller
 {
     public function index()
     {
-        $programs = Program::latest()->filter(request(['search', 'categoryProgram']))->paginate(6);
+        $programs = Program::latest()->filter(request(['search', 'category']))->paginate(6);
 
         return view('home.programs', compact('programs'));
     }

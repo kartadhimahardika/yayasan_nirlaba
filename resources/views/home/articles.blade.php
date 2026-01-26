@@ -46,9 +46,9 @@
                         </div>
                         <div class="p-8">
                             <div class="flex items-center space-x-4">
-                                <a href="/articles?author={{ $article->author->username }}">
+                                <a href="/articles?user={{ $article->user->username }}">
                                     <span class="font-medium dark:text-white text-xs hover:underline">
-                                        Oleh {{ $article->author->name }}
+                                        Oleh {{ $article->user->name }}
                                     </span>
                                 </a>
                                 <span class="text-sm">pada {{ $article->created_at->format('d F Y') }}</span>

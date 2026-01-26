@@ -24,7 +24,7 @@ class ArticleFactory extends Factory
             'slug' => Str::slug($title),
             'photo' => $this->faker->imageUrl(800, 600, 'news', true),
             'description' => fake()->text(),
-            'author_id' => User::factory()
+            'user_id' => User::factory()
         ];
     }
 }
