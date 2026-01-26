@@ -12,9 +12,9 @@ class Article extends Model
     /** @use HasFactory<\Database\Factories\ArticleFactory> */
     use HasFactory;
 
-    protected $fillable = ['title', 'slug', 'photo', 'description', 'author_id'];
+    protected $fillable = ['title', 'slug', 'photo', 'description', 'user_id'];
 
-    public function author(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -25,11 +25,11 @@ class Article extends Model
             return $query->where('title', 'like', '%' . $search . '%');
         });
 
-        $query->when($filters['author'] ?? false, function ($query, $author) {
+        $query->when($filters['user'] ?? false, function ($query, $user) {
             return $query->whereHas(
-                'author',
+                'user',
                 fn(Builder $query) =>
-                $query->where('username', $author)
+                $query->where('username', $user)
             );
         });
     }

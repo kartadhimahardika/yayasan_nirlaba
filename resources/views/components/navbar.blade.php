@@ -21,27 +21,31 @@
             <div class="hidden md:flex md:items-center md:space-x-8">
                 <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('home') ? 'border-b-2 border-indigo-400' : '' }}"
                     href="{{ route('home') }}">
-                    Home
+                    Beranda
                 </a>
                 <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('about') ? 'border-b-2 border-indigo-400' : '' }}"
                     href="{{ route('about') }}">
                     Tentang Kami
                 </a>
-                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('programs') ? 'border-b-2 border-indigo-400' : '' }}"
-                    href="{{ route('programs') }}">
-                    Programs
+                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('programs.*') ? 'border-b-2 border-indigo-400' : '' }}"
+                    href="{{ route('programs.index') }}">
+                    Program
                 </a>
-                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('articles') ? 'border-b-2 border-indigo-400' : '' }}"
-                    href="{{ route('articles') }}">
-                    Berita
+                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('articles.*') ? 'border-b-2 border-indigo-400' : '' }}"
+                    href="{{ route('articles.index') }}">
+                    Artikel
+                </a>
+                <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('donation.*') ? 'border-b-2 border-indigo-400' : '' }}"
+                    href="{{ route('donation.index') }}">
+                    Donasi
                 </a>
                 <a class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('contact') ? 'border-b-2 border-indigo-400' : '' }}"
                     href="{{ route('contact') }}">
-                    Contact
+                    Kontak
                 </a>
                 <a href="/login"
                     class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full text-sm font-medium transition-colors">
-                    Login
+                    Masuk
                 </a>
             </div>
 
@@ -68,27 +72,31 @@
     <div x-show="open" x-transition class="md:hidden px-4 pb-4 space-y-2">
         <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('home') ? 'border-b-2 border-indigo-400' : '' }}"
             href="{{ route('home') }}">
-            Home
+            Beranda
         </a>
         <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('about') ? 'border-b-2 border-indigo-400' : '' }}"
             href="{{ route('about') }}">
             Tentang Kami
         </a>
         <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('programs') ? 'border-b-2 border-indigo-400' : '' }}"
-            href="{{ route('programs') }}">
-            Programs
+            href="{{ route('programs.index') }}">
+            Program
         </a>
         <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('articles') ? 'border-b-2 border-indigo-400' : '' }}"
-            href="{{ route('articles') }}">
-            Berita
+            href="{{ route('articles.index') }}">
+            Artikel
+        </a>
+        <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('donation.*') ? 'border-b-2 border-indigo-400' : '' }}"
+            href="{{ route('donation.index') }}">
+            Donasi
         </a>
         <a class="block text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium {{ request()->routeIs('contact') ? 'border-b-2 border-indigo-400' : '' }}"
             href="{{ route('contact') }}">
-            Contact
+            Kontak
         </a>
         <a href="/login"
             class="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full text-sm font-medium transition-colors">
-            Login
+            Masuk
         </a>
     </div>
 </nav>

@@ -16,7 +16,7 @@ class DashboardArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::latest()->where('author_id', Auth::user()->id);
+        $articles = Article::latest()->where('user_id', Auth::user()->id);
 
         if (request('keyword')) {
             $articles->where('title', 'like', '%' . request('keyword') . '%');
@@ -56,7 +56,7 @@ class DashboardArticleController extends Controller
             'title' => $request->title,
             'slug'  => Str::slug($request->title),
             'description' => $request->description,
-            'author_id' => Auth::user()->id,
+            'user_id' => Auth::user()->id,
         ]);
 
         return redirect('/dashboard/articles')->with(['success' => 'Artikel baru berhasil ditambahkan']);
@@ -101,7 +101,7 @@ class DashboardArticleController extends Controller
             'title' => $request->title,
             'slug'  => Str::slug($request->title),
             'description' => $request->description,
-            'author_id' => Auth::user()->id,
+            'user_id' => Auth::user()->id,
         ]);
 
         return redirect('/dashboard/articles')->with(['success' => 'Artikel berhasil diedit']);

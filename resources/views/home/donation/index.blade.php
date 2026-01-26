@@ -1,5 +1,15 @@
 <x-layout>
 
+    <section id="programs" class="py-24 bg-gradient-to-br from-blue-50 via-white to-green-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-blue-600 mb-6">DAFTAR <span class="text-gray-900">DONASI</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                Comprehensive initiatives designed to create sustainable change and empower communities worldwide
+                through education, healthcare, and economic development.</p>
+        </div>
+    </section>
+
     <div class="pt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">Donasi Terverifikasi</h2>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -61,6 +71,13 @@
         </div>
         <div class="mt-12">
             {{ $donations->links() }}
+        </div>
+
+        <div class="flex justify-center my-16">
+            <a href="/confirm"
+                class="bg-green-500 hover:bg-green-600 text-white px-10 py-3 rounded-lg font-medium transition">
+                Konfirmasi Donasi
+            </a>
         </div>
     </div>
 

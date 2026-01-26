@@ -11,7 +11,7 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::latest()->filter(request(['search', 'author']))->paginate(6);
+        $articles = Article::latest()->filter(request(['search', 'user']))->paginate(6);
 
         return view('home.articles', compact('articles'));
     }

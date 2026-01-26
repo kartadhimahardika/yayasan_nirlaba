@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Dashboard\DashboardAdminController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -11,11 +10,14 @@ use App\Http\Controllers\Home\ArticleController;
 use App\Http\Controllers\Home\ContactController;
 use App\Http\Controllers\Home\ProgramController;
 use App\Http\Controllers\Home\DonationController;
+use App\Http\Controllers\Dashboard\DashboardController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Dashboard\DashboardUserController;
+use App\Http\Controllers\Dashboard\DashboardAdminController;
 use App\Http\Controllers\Dashboard\DashboardArticleController;
 use App\Http\Controllers\Dashboard\DashboardProgramController;
 use App\Http\Controllers\Dashboard\DashboardCategoryController;
+use App\Http\Controllers\Dashboard\DashboardDonationController;
 
 Route::get('/wellcome', function () {
     return view('welcome');
@@ -24,14 +26,15 @@ Route::get('/wellcome', function () {
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
-Route::get('/programs', [ProgramController::class, 'index'])->name('programs');
-Route::get('/programs/{program:slug}', [ProgramController::class, 'show']);
-Route::get('/articles', [ArticleController::class, 'index'])->name('articles');
-Route::get('/articles/{article:slug}', [ArticleController::class, 'show']);
+Route::get('/programs', [ProgramController::class, 'index'])->name('programs.index');
+Route::get('/programs/{program:slug}', [ProgramController::class, 'show'])->name('programs.show');
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-Route::get('/donation', [DonationController::class, 'index'])->name('donation');
-Route::get('/donation/{donation:slug}', [DonationController::class, 'show'])->name('donation');
-Route::get('/confirm', [DonationController::class, 'create'])->name('donation');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/donation', [DonationController::class, 'index'])->name('donation.index');
+Route::get('/donation/{donation:slug}', [DonationController::class, 'show'])->name('donation.show');
+Route::get('/confirm', [DonationController::class, 'create'])->name('donation.confirm');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -39,9 +42,10 @@ Route::get('/confirm', [DonationController::class, 'create'])->name('donation');
 
 Route::middleware(['auth', IsAdmin::class])->group(function () {
     // Dashboard
-    Route::get('/dashboard', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard.index');
+    // })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -70,7 +74,7 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
         Route::get('/{article:slug}', [DashboardArticleController::class, 'show']);
     });
 
-    // User Role
+    // Admin
     Route::prefix('dashboard/admin')->group(function () {
         Route::get('/', [DashboardAdminController::class, 'index'])->name('dashboardAdmin');
         Route::post('/', [DashboardAdminController::class, 'store']);
@@ -82,6 +86,12 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
         Route::get('/', [DashboardCategoryController::class, 'index'])->name('dashboardCategory');
         Route::post('/', [DashboardCategoryController::class, 'store']);
         Route::get('/create', [DashboardCategoryController::class, 'create']);
+    });
+
+    // Donasi
+    Route::prefix('dashboard/donation')->group(function () {
+        Route::get('/', [DashboardDonationController::class, 'index'])->name('dashboardDonation');
+        Route::get('/{donation:slug}', [DashboardDonationController::class, 'show']);
     });
 });
 

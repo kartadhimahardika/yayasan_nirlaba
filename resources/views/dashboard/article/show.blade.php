@@ -66,7 +66,7 @@
                     </h1>
 
                     <div class="flex items-center text-gray-500 dark:text-gray-400 text-sm space-x-4">
-                        <span>Penulis: <b>{{ $article->author->username }}</b></span>
+                        <span>Penulis: <b>{{ $article->user->username }}</b></span>
                         <span>•</span>
                         <span>Dibuat pada: {{ $article->created_at->format('d M Y') }}</span>
                     </div>

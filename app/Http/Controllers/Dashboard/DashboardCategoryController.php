@@ -38,7 +38,7 @@ class DashboardCategoryController extends Controller
     public function store(Request $request)
     {
         Validator::make($request->all(), [
-            'name' => 'required|unique:category_programs|min:4|max:20'
+            'name' => 'required|unique:categories|min:4|max:20'
         ], [
             'name.required' => ':attribute ini wajib diisi',
             'name.unique' => ':attribute ini tidak boleh sama',

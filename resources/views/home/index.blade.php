@@ -54,41 +54,41 @@
     <section id="about" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div data-oid="t13k7yh">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6" data-oid="j0sfouj">Our Mission
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Our Mission
                     </h2>
-                    <p class="text-lg text-gray-600 mb-6" data-oid="l_zt4dt">We believe every person deserves access
+                    <p class="text-lg text-gray-600 mb-6">We believe every person deserves access
                         to education, healthcare, and opportunities for growth. Our mission is to break the cycle of
                         poverty through sustainable community-driven solutions.</p>
-                    <p class="text-lg text-gray-600 mb-8" data-oid="2v:zdv-">Since 2010, we've partnered with local
+                    <p class="text-lg text-gray-600 mb-8">Since 2010, we've partnered with local
                         communities to create lasting impact through innovative programs that address root causes,
                         not just symptoms.</p>
-                    <div class="grid grid-cols-2 gap-6" data-oid="6b3ppwv">
-                        <div class="text-center" data-oid="hcga1f9">
-                            <div class="text-3xl font-bold text-blue-600" data-oid="my97e6j">50K+</div>
-                            <div class="text-gray-600" data-oid="-va21kz">Lives Impacted</div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-600">50K+</div>
+                            <div class="text-gray-600">Lives Impacted</div>
                         </div>
-                        <div class="text-center" data-oid="77gxhhr">
-                            <div class="text-3xl font-bold text-green-600" data-oid="8qq1__3">25</div>
-                            <div class="text-gray-600" data-oid="eht6g75">Countries</div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-green-600">25</div>
+                            <div class="text-gray-600">Countries</div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-gray-200 rounded-lg h-96 flex items-center justify-center" data-oid="-ecc_wf"><span
-                        class="text-gray-500" data-oid="s.dja4w">Mission Image</span></div>
+                <div class="bg-gray-200 rounded-lg h-96 flex items-center justify-center"><span
+                        class="text-gray-500">Mission Image</span></div>
             </div>
         </div>
     </section>
 
-    <section id="programs" class="py-20 bg-gray-50" data-oid="j21plgo">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-oid="l7f15nb">
-            <div class="text-center mb-16" data-oid="obeqahk">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-oid="-vjvgc0">Our Programs</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-oid="37sqn87">Comprehensive initiatives
+    {{-- <section id="programs" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Programs</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Comprehensive initiatives
                     designed to create sustainable change in communities around the world.</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8" data-oid="saxrjlj">
-                <div class="bg-white rounded-lg shadow-sm p-8 hover:shadow-md transition-shadow" data-oid="03wo:hs">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-sm p-8 hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6"
                         data-oid="p61dji9">
                         <div class="w-6 h-6 bg-blue-600 rounded" data-oid="8sw2tzn"></div>
@@ -124,9 +124,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
-    <section id="impact" class="py-20 bg-white" data-oid="4toro0">
+    {{-- <section id="impact" class="py-20 bg-white" data-oid="4toro0">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-oid="56qvnkd">
             <div class="text-center mb-16" data-oid="o:35mtl">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-oid="0a8n0v1">Real Impact, Real
@@ -160,9 +160,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
-    <section class="py-20 bg-gradient-to-r from-blue-600 to-green-600" data-oid="3l5pylw">
+    {{-- <section class="py-20 bg-gradient-to-r from-blue-600 to-green-600" data-oid="3l5pylw">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-oid="6pklz_-">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-oid="6tqi619">Stay Connected</h2>
             <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto" data-oid="9:5hnv3">Get updates on our
@@ -174,7 +174,7 @@
                     class="bg-white text-blue-600 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors"
                     data-oid="xws88:s">Subscribe</button></form>
         </div>
-    </section>
+    </section> --}}
 
 
 
