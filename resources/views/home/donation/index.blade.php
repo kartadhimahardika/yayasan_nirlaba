@@ -10,6 +10,40 @@
         </div>
     </section>
 
+    <div class="mb-16">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+            Informasi Rekening Donasi
+        </h2>
+
+        <div class="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+            @foreach ($banks as $bank)
+                <div
+                    class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 p-6 border-l-4 border-blue-500">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L2 7v2h20V7L12 2zm10 9H2v9h20v-9z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Bank {{ $bank->name }}</h3>
+                            <p class="text-sm text-gray-500">a.n {{ $bank->holder }}</p>
+                        </div>
+                    </div>
+
+                    <div class="text-center bg-blue-50 rounded-lg py-4">
+                        <p class="text-sm text-gray-600">Nomor Rekening</p>
+                        <p class="text-2xl font-bold text-blue-600 tracking-widest">
+                            {{ $bank->number }}
+                        </p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+
+
     <div class="pt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">Donasi Terverifikasi</h2>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

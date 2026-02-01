@@ -13,11 +13,12 @@ use App\Http\Controllers\Home\DonationController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Dashboard\DashboardUserController;
-use App\Http\Controllers\Dashboard\DashboardAdminController;
-use App\Http\Controllers\Dashboard\DashboardArticleController;
-use App\Http\Controllers\Dashboard\DashboardProgramController;
-use App\Http\Controllers\Dashboard\DashboardCategoryController;
-use App\Http\Controllers\Dashboard\DashboardDonationController;
+use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\ArticleController as DashboardArticleController;
+use App\Http\Controllers\Dashboard\BankController;
+use App\Http\Controllers\Dashboard\ProgramController as DashboardProgramController;
+use App\Http\Controllers\Dashboard\DonationController as DashboardDonationController;
 
 Route::get('/wellcome', function () {
     return view('welcome');
@@ -51,47 +52,55 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/upload', [ProfileController::class, 'upload']);
 
     // Program
     Route::prefix('dashboard/programs')->group(function () {
-        Route::get('/', [DashboardProgramController::class, 'index'])->name('dashboardPrograms');
+        Route::get('/', [DashboardProgramController::class, 'index'])->name('dashboard.program');
         Route::post('/', [DashboardProgramController::class, 'store']);
-        Route::get('/create', [DashboardProgramController::class, 'create']);
+        Route::get('/create', [DashboardProgramController::class, 'create'])->name('dashboard.program.create');
         Route::delete('/{program:slug}', [DashboardProgramController::class, 'destroy']);
-        Route::get('/{program:slug}/edit', [DashboardProgramController::class, 'edit']);
+        Route::get('/{program:slug}/edit', [DashboardProgramController::class, 'edit'])->name('dashboard.program.edit');
         Route::patch('/{program:slug}', [DashboardProgramController::class, 'update']);
-        Route::get('/{program:slug}', [DashboardProgramController::class, 'show']);
+        Route::get('/{program:slug}', [DashboardProgramController::class, 'show'])->name('dashboard.program.show');
     });
 
     // Article
     Route::prefix('dashboard/articles')->group(function () {
-        Route::get('/', [DashboardArticleController::class, 'index'])->name('dashboardArticle');
+        Route::get('/', [DashboardArticleController::class, 'index'])->name('dashboard.article');
         Route::post('/', [DashboardArticleController::class, 'store']);
-        Route::get('/create', [DashboardArticleController::class, 'create']);
+        Route::get('/create', [DashboardArticleController::class, 'create'])->name('dashboard.article.create');
         Route::delete('/{article:slug}', [DashboardArticleController::class, 'destroy']);
-        Route::get('/{article:slug}/edit', [DashboardArticleController::class, 'edit']);
+        Route::get('/{article:slug}/edit', [DashboardArticleController::class, 'edit'])->name('dashboard.article.edit');
         Route::patch('/{article:slug}', [DashboardArticleController::class, 'update']);
-        Route::get('/{article:slug}', [DashboardArticleController::class, 'show']);
+        Route::get('/{article:slug}', [DashboardArticleController::class, 'show'])->name('dashboard.article.show');
     });
 
     // Admin
     Route::prefix('dashboard/admin')->group(function () {
-        Route::get('/', [DashboardAdminController::class, 'index'])->name('dashboardAdmin');
-        Route::post('/', [DashboardAdminController::class, 'store']);
-        Route::get('/create', [DashboardAdminController::class, 'create']);
+        Route::get('/', [AdminController::class, 'index'])->name('dashboard.admin');
+        Route::post('/', [AdminController::class, 'store']);
+        Route::get('/create', [AdminController::class, 'create'])->name('dashboard.admin.create');
     });
 
     // Category
     Route::prefix('dashboard/category')->group(function () {
-        Route::get('/', [DashboardCategoryController::class, 'index'])->name('dashboardCategory');
-        Route::post('/', [DashboardCategoryController::class, 'store']);
-        Route::get('/create', [DashboardCategoryController::class, 'create']);
+        Route::get('/', [CategoryController::class, 'index'])->name('dashboard.category');
+        Route::post('/', [CategoryController::class, 'store']);
+        Route::get('/create', [CategoryController::class, 'create'])->name('dashboard.category.create');
     });
 
     // Donasi
     Route::prefix('dashboard/donation')->group(function () {
-        Route::get('/', [DashboardDonationController::class, 'index'])->name('dashboardDonation');
-        Route::get('/{donation:slug}', [DashboardDonationController::class, 'show']);
+        Route::get('/', [DashboardDonationController::class, 'index'])->name('dashboard.donation');
+        Route::get('/{donation:slug}', [DashboardDonationController::class, 'show'])->name('dashboard.donation.show');
+    });
+
+    // No. Rekening
+    Route::prefix('dashboard/bank')->group(function () {
+        Route::get('/', [BankController::class, 'index'])->name('dashboard.bank');
+        Route::post('/', [BankController::class, 'store']);
+        Route::get('/create', [BankController::class, 'create'])->name('dashboard.bank.create');
     });
 });
 

@@ -13,7 +13,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-oid="story-container">
             <div class="grid lg:grid-cols-2 gap-16 items-center" data-oid="story-grid">
                 <div data-oid="story-content">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8" data-oid="story-title">Our Story</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8" data-oid="story-title">Sejarah</h2>
                     <div class="space-y-6" data-oid="story-text">
                         <p class="text-lg text-gray-600 leading-relaxed" data-oid="story-p1">Founded in 2010 by a group
                             of passionate advocates, HopeForward began with a simple belief: every person deserves

@@ -2,26 +2,21 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use Illuminate\Support\Str;
+use App\Models\Bank;
 use Illuminate\Http\Request;
-use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
-class DashboardCategoryController extends Controller
+class BankController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = Category::latest();
+        $banks = Bank::latest();
 
-        if (request('keyword')) {
-            $categories->where('name', 'like', '%' . request('keyword') . '%');
-        }
-
-        return view('dashboard.category.index', ['categories' => $categories->paginate(10)->withQueryString()]);
+        return view('dashboard.bank.index', ['banks' => $banks->paginate(10)->withQueryString()]);
     }
 
     /**
@@ -29,7 +24,7 @@ class DashboardCategoryController extends Controller
      */
     public function create()
     {
-        return view('dashboard.category.create');
+        return view('dashboard.bank.create');
     }
 
     /**
@@ -38,22 +33,29 @@ class DashboardCategoryController extends Controller
     public function store(Request $request)
     {
         Validator::make($request->all(), [
-            'name' => 'required|unique:categories|min:4|max:20'
+            'name' => 'required|max:50',
+            'number' => 'required|numeric|digits_between:8,30',
+            'holder' => 'required|max:100'
         ], [
-            'name.required' => ':attribute ini wajib diisi',
-            'name.unique' => ':attribute ini tidak boleh sama',
-            'name.min' => ':attribute ini harus terdiri minimal 4 karakter',
-            'name.max' => ':attribute ini maksimal terdiri dari 20 karakter'
+            'name.required' => 'Bidang :attribute harus diisi',
+            'name.max' => ':attribute tidak boleh lebih dari :max karakter',
+            'number.required' => "Bidang :attribute harus diisi",
+            'number.digits_between' => ':attribute harus terdiri dari :min sampai :max digit',
+            'holder.required' => "Bidang :attribute harus diisi",
+            'holder.max' => ':attribute tidak boleh lebih dari :max karakter',
         ], [
-            'name' => 'Kategori'
+            'name' => 'Nama Bank',
+            'number' => 'Nomor Rekening',
+            'holder' => 'Nama Pemilik'
         ])->validate();
 
-        Category::create([
+        Bank::create([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'number' => $request->number,
+            'holder' => $request->holder
         ]);
 
-        return redirect('/dashboard/category')->with(['success' => 'Kategori baru berhasil ditambahkan']);
+        return redirect('/dashboard/bank')->with(['success' => 'Nomor Rekening baru berhasil ditambahkan']);
     }
 
     /**

@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class DashboardAdminController extends Controller
+class AdminController extends Controller
 {
     public function index()
     {

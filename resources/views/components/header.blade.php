@@ -93,8 +93,9 @@
                 class="cursor-pointer flex w-full items-center rounded-sm gap-2 p-2 text-left text-neutral-600 hover:bg-black/5 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white dark:focus-visible:outline-white"
                 x-bind:class="userDropdownIsOpen ? 'bg-black/10 dark:bg-white/10' : ''" aria-haspopup="true"
                 x-on:click="userDropdownIsOpen = ! userDropdownIsOpen" x-bind:aria-expanded="userDropdownIsOpen">
-                <img src="https://penguinui.s3.amazonaws.com/component-assets/avatar-7.webp"
-                    class="size-8 object-cover rounded-sm" alt="avatar" aria-hidden="true" />
+                <img src="{{ Auth::user()->avatar ? asset('storage/' . Auth::user()->avatar) : asset('images/avatar.jpg') }}"
+                    alt="{{ Auth::user()->name }}" class="size-8 object-cover rounded-sm" alt="avatar"
+                    aria-hidden="true" />
                 <div class="hidden md:flex flex-col">
                     <span class="text-sm font-bold text-neutral-900 dark:text-white">
                         {{ Auth::user()->name }}

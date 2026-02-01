@@ -37,10 +37,11 @@
 
         <div class="bg-white shadow-sm  border-gray-200 dark:bg-zinc-800 rounded-lg">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center py-6">
+                {{-- <div class="flex justify-between items-center py-6"> --}}
+                <div class="flex flex-col gap-4 md:flex-row md:justify-between md:items-center py-6">
                     <div>
-                        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Manajemen Kategori</h1>
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Manage Kategori Disini
+                        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Manajemen No. Rekening</h1>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Manajemen Nomor Rekening Donasi Disini
                         </p>
                     </div>
                     <div class="w-full md:w-1/2">
@@ -64,7 +65,7 @@
 
                     </div>
 
-                    <a href="/dashboard/category/create"
+                    <a href="/dashboard/bank/create"
                         class="inline-flex items-center gap-2 px-4 py-2 text-sm rounded-md text-white bg-blue-600 hover:bg-blue-700 dark:bg-zinc-700 dark:hover:bg-zinc-600">
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
@@ -72,8 +73,9 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6" />
                         </svg>
 
-                        Tambah Kategori
+                        Tambah No. Rekening
                     </a>
+
                 </div>
             </div>
         </div>
@@ -89,22 +91,36 @@
                                     #</th>
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white">
-                                    Kategori</th>
+                                    Nama Bank</th>
+                                <th <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white">
+                                    No.Rekening</th>
+                                <th <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white">
+                                    Nama Pemilik</th>
                                 <th
                                     class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white">
                                     Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200 dark:bg-zinc-800">
-                            @foreach ($categories as $category)
+                            @foreach ($banks as $bank)
                                 <tr class="hover:bg-gray-50 transition-colors duration-150 dark:hover:bg-zinc-700">
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm font-medium text-gray-900 dark:text-white ">
                                             {{ $loop->iteration }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900 dark:text-white ">Bank
+                                            {{ $bank->name }}</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm font-medium text-gray-900 dark:text-white ">
-                                            {{ $category->name }}</div>
+                                            {{ $bank->number }}</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900 dark:text-white ">
+                                            {{ $bank->holder }}</div>
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
@@ -131,6 +147,8 @@
                                                 </svg>
                                                 Hapus
                                             </button>
+
+
                                         </div>
                                     </td>
                                 </tr>
@@ -140,12 +158,11 @@
                 </div>
             </div>
 
-            @if ($categories->hasPages())
+            @if ($banks->hasPages())
                 <div class="bg-white px-4 py-3 mt-4 rounded-lg shadow-sm border border-gray-200 dark:bg-zinc-800">
-                    {{ $categories->onEachSide(1)->withQueryString()->links() }}
+                    {{ $banks->onEachSide(1)->withQueryString()->links() }}
                 </div>
             @endif
-
         </div>
     </div>
 </x-app-layout>

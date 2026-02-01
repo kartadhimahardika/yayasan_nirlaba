@@ -6,7 +6,7 @@ use App\Models\Donation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DashboardDonationController extends Controller
+class DonationController extends Controller
 {
     /**
      * Display a listing of the resource.

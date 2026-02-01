@@ -32,8 +32,8 @@
             <span>Dashboard</span>
         </a>
 
-        <a href="/dashboard/category"
-            class="{{ request()->routeIs('dashboardCategory') ? 'nav-active' : 'nav-inactive' }}">
+        <a href="{{ route('dashboard.category') }}"
+            class="{{ request()->routeIs('dashboard.category*') ? 'nav-active' : 'nav-inactive' }}">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 shrink-0"
                 aria-hidden="true">
                 <path fill-rule="evenodd"
@@ -43,8 +43,19 @@
             <span>Kategori</span>
         </a>
 
-        <a href="{{ route('dashboardPrograms') }}"
-            class="{{ request()->routeIs('dashboardPrograms') ? 'nav-active' : 'nav-inactive' }}">
+        <a href="{{ route('dashboard.bank') }}"
+            class="{{ request()->routeIs('dashboard.bank*') ? 'nav-active' : 'nav-inactive' }}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="size-5 shrink-0"
+                aria-hidden="true">
+                <path
+                    d="M3 6a3 3 0 0 1 3-3h11a2 2 0 1 1 0 4H6a1 1 0 0 0 0 2h13a2 2 0 0 1 2 2v6a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6z" />
+                <circle cx="16.5" cy="13" r="1.5" />
+            </svg>
+            <span>No. Rekening</span>
+        </a>
+
+        <a href="{{ route('dashboard.program') }}"
+            class="{{ request()->routeIs('dashboard.program*') ? 'nav-active' : 'nav-inactive' }}">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 shrink-0"
                 aria-hidden="true">
                 <path
@@ -54,8 +65,8 @@
             <span class="sr-only">active</span>
         </a>
 
-        <a href="{{ route('dashboardArticle') }}"
-            class="{{ request()->routeIs('dashboardArticle') ? 'nav-active' : 'nav-inactive' }}">
+        <a href="{{ route('dashboard.article') }}"
+            class="{{ request()->routeIs('dashboard.article*') ? 'nav-active' : 'nav-inactive' }}">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 shrink-0"
                 aria-hidden="true">
                 <path fill-rule="evenodd"
@@ -69,7 +80,8 @@
             <span class="sr-only">active</span>
         </a>
 
-        <a href="/dashboard/admin" class="{{ request()->routeIs('dashboardAdmin') ? 'nav-active' : 'nav-inactive' }}">
+        <a href="{{ route('dashboard.admin') }}"
+            class="{{ request()->routeIs('dashboard.admin*') ? 'nav-active' : 'nav-inactive' }}">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 shrink-0"
                 aria-hidden="true">
                 <path
@@ -78,8 +90,8 @@
             <span>Admin</span>
         </a>
 
-        <a href="/dashboard/donation"
-            class="{{ request()->routeIs('dashboardDonation') ? 'nav-active' : 'nav-inactive' }}">
+        <a href="{{ route('dashboard.donation') }}"
+            class="{{ request()->routeIs('dashboard.donation*') ? 'nav-active' : 'nav-inactive' }}">
             {{-- class="flex items-center rounded-sm gap-2 px-2 py-1.5 text-sm font-medium text-neutral-600 underline-offset-2 hover:bg-black/5 hover:text-neutral-900 focus-visible:underline focus:outline-hidden dark:text-neutral-300 dark:hover:bg-white/5 dark:hover:text-white"> --}}
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 shrink-0"
                 aria-hidden="true">
