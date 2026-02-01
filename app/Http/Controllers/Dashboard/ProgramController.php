@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
-class DashboardProgramController extends Controller
+class ProgramController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -40,7 +40,7 @@ class DashboardProgramController extends Controller
         Validator::make($request->all(), [
             'title'                 => 'required|unique:programs|min:4|max:255',
             'category_id'   => 'required',
-            'description'           => 'required'
+            'description'           => 'required|min:50'
         ], [
             'title.required'                => 'Field :attribute harus diisi',
             'category_id.required'  => 'Field :attribute harus dipilih',
@@ -84,13 +84,13 @@ class DashboardProgramController extends Controller
     public function update(Request $request, Program $program)
     {
         Validator::make($request->all(), [
-            'title'                 => 'required|min:4|max:255|unique:programs,title,' . $program->id,
+            'title'         => 'required|min:4|max:255|unique:programs,title,' . $program->id,
             'category_id'   => 'required',
-            'description'           => 'required'
+            'description'   => 'required'
         ], [
-            'title.required'                => 'Field :attribute harus diisi',
+            'title.required'        => 'Field :attribute harus diisi',
             'category_id.required'  => 'Field :attribute harus dipilih',
-            'description.required'          => 'Field :attribute harus diisi'
+            'description.required'  => 'Field :attribute harus diisi'
         ], [
             'title'                 => 'Judul',
             'category_id'   => 'Kategori',

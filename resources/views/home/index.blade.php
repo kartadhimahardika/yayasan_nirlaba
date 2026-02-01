@@ -74,8 +74,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-gray-200 rounded-lg h-96 flex items-center justify-center"><span
-                        class="text-gray-500">Mission Image</span></div>
+                <div class="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
+                    <span class="text-gray-500">Mission Image
+                    </span>
+                </div>
             </div>
         </div>
     </section>

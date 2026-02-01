@@ -17,10 +17,13 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    {{-- CSS Stack --}}
+    @stack('style')
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/toast.js'])
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.5.1/flowbite.min.js"></script>
+
 
 </head>
 
@@ -44,6 +47,8 @@
             </div>
         </div>
     </div>
+    {{-- Javascript Stack --}}
+    @stack('script')
 </body>
 
 </html>

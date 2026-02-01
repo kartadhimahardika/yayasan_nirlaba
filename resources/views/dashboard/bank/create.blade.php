@@ -6,21 +6,45 @@
         <div
             class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                Tambah Kategori Baru
+                Tambah Nomor Rekening Baru
             </h3>
         </div>
         <!-- Modal body -->
-        <form action="/dashboard/category" method="POST" class="p-4 md:p-5">
+        <form action="/dashboard/bank" method="POST" class="p-4 md:p-5">
             @csrf
             <div class="mb-4 col-span-2">
-                <label for="name"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kategori</label>
+                <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                    Bank</label>
                 <input type="text" name="name" id="name"
                     class="@error('name')
                        bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
                     @enderror  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    placeholder="Tulis nama kategori" autofocus autocomplete="off" value="{{ old('name') }}">
+                    placeholder="Tulis nama bank" autofocus autocomplete="off" value="{{ old('name') }}">
                 @error('name')
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-4 col-span-2">
+                <label for="number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No.
+                    Rekening</label>
+                <input type="text" name="number" id="number"
+                    class="@error('number')
+                       bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
+                    @enderror  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="Tulis nomor rekening" autofocus autocomplete="off" value="{{ old('number') }}">
+                @error('number')
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-4 col-span-2">
+                <label for="holder" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama
+                    Pemilik</label>
+                <input type="text" name="holder" id="holder"
+                    class="@error('holder')
+                       bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
+                    @enderror  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    placeholder="Tulis nama pemilik rekening" autofocus autocomplete="off" value="{{ old('holder') }}">
+                @error('holder')
                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                 @enderror
             </div>
@@ -36,7 +60,8 @@
                     Tambah
                 </button>
 
-                <a href="/dashboard/category"
+
+                <a href="/dashboard/bank"
                     class="text-white inline-flex items-center gap-1 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-transparent dark:text-red-400 dark:border dark:border-red-400/40 dark:hover:bg-white/10 dark:focus:ring-red-800">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -44,7 +69,9 @@
                     </svg>
                     Batal
                 </a>
-                </a>
+
+
+
             </div>
         </form>
     </div>

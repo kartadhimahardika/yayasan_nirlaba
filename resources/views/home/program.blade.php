@@ -27,7 +27,7 @@
 
                     <div class="prose prose-lg max-w-none">
                         <div class="text-gray-700 leading-relaxed text-lg whitespace-pre-line">
-                            {{ $program->description }}
+                            {!! $program->description !!}
                         </div>
 
                         <div class="mt-6">

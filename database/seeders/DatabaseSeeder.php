@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             ProgramSeeder::class,
             ArticleSeeder::class,
             DonationSeeder::class,
+            BankSeeder::class,
         ]);
     }
 }

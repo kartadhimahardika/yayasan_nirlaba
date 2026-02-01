@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class DashboardArticleController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.

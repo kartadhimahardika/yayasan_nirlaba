@@ -57,9 +57,9 @@
                                     {{ $program->title }}
                                 </h3>
                             </a>
-                            <p class="text-gray-600 mb-6 leading-relaxed">
+                            <div class="text-gray-600 mb-6 leading-relaxed">
                                 {!! Str::limit(strip_tags($program->description), 100) !!}
-                            </p>
+                            </div>
                             <a href="/programs/{{ $program->slug }}"
                                 class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-medium transition-colors">
                                 Selengkapnya
