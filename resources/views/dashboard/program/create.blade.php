@@ -1,5 +1,6 @@
 <x-app-layout>
     @push('style')
+        <link href="filepond.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
     @endpush
     <div class="relative bg-white rounded-lg shadow-sm dark:bg-zinc-800">
@@ -10,7 +11,8 @@
             </h3>
         </div>
 
-        <form action="/dashboard/programs" method="POST" class="p-4 md:p-5" id="program-form">
+        <form action="/dashboard/programs" method="POST" class="p-4 md:p-5" id="program-form"
+            enctype="multipart/form-data">
             @csrf
             <div class="mb-4 col-span-2">
                 <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul</label>
@@ -54,6 +56,26 @@
                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                 </div>
             @enderror
+
+            <div>
+
+                <label class="block mb-2.5 text-sm font-medium text-heading" for="avatar">Upload Gambar</label>
+                <input
+                    class=" @error('photo')
+                       bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
+                    @enderror cursor-pointer bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full shadow-xs placeholder:text-body"
+                    id="photo" name="photo" type="file" accept="image/*">
+                @error('photo')
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+
+            {{-- <div>
+                <img class="w-14 h-14 rounded-full"
+                    src="{{ $user->photo ? asset('storage/' . $user->photo) : asset('images/photo.jpg') }}"
+                    alt="{{ $user->name }}" id="photo-preview">
+            </div> --}}
+
             <div class="mt-4 flex gap-2">
                 <button type="submit"
                     class="text-white inline-flex items-center gap-1 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-transparent dark:text-blue-400 dark:border dark:border-blue-400/40 dark:hover:bg-white/10 dark:focus:ring-blue-800">
@@ -74,14 +96,13 @@
                     Batal
                 </a>
             </div>
-
-
-
         </form>
     </div>
+
     @push('script')
         <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 
+        {{-- Quill --}}
         <script>
             const quill = new Quill('#editor', {
                 theme: 'snow',
@@ -100,6 +121,44 @@
 
                 this.submit();
             })
+        </script>
+
+        {{-- Gambar --}}
+        <script>
+            const input = document.getElementById('photo');
+            const previewPhoto = () => {
+                const file = input.files;
+                if (file) {
+                    const fileReader = new FileReader();
+                    const preview = document.getElementById('photo-preview');
+                    fileReader.onload = function(event) {
+                        preview.setAttribute('src', event.target.result);
+                    }
+                    fileReader.readAsDataURL(file[0]);
+                }
+            }
+            input.addEventListener("change", previewPhoto);
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const inputElement = document.querySelector('#photo');
+
+                if (!inputElement) return;
+
+                FilePond.create(inputElement, {
+                    acceptedFileTypes: ['image/*'],
+                    maxFileSize: '5MB',
+                    imageResizeTargetWidth: 600,
+                    imageResizeMode: 'contain',
+                    imageResizeUpscale: false,
+                    server: {
+                        url: '/upload',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        }
+                    }
+                });
+            });
         </script>
     @endpush
 </x-app-layout>
