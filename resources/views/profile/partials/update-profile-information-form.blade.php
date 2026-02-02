@@ -50,8 +50,7 @@
     </div>
 
     <div>
-        <img class="w-14 h-14 rounded-full"
-            src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('images/avatar.jpg') }}"
+        <img class="w-14 h-14 rounded-full" src="{{ $user->avatar ?? asset('images/avatar.jpg') }}"
             alt="{{ $user->name }}" id="avatar-preview">
     </div>
 
@@ -106,7 +105,7 @@
                 imageResizeMode: 'contain',
                 imageResizeUpscale: false,
                 server: {
-                    url: '/upload',
+                    url: "{{ route('profile.upload') }}",
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     }

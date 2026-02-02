@@ -44,16 +44,35 @@ class ProfileController extends Controller
         //     $validated['avatar'] = $path;
         // }
 
-        if ($request->avatar) {
+        // if ($request->avatar) {
+        //     if (!empty($request->user()->avatar)) {
+        //         Storage::disk('public')->delete($request->user()->avatar);
+        //     }
+
+        //     $newFileName = Str::after($request->avatar, 'tmp/');
+
+        //     Storage::disk('public')->move($request->avatar, "img/$newFileName");
+
+        //     $validated['avatar'] = "img/$newFileName";
+        // }
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+
+            dd($avatar);
+
             if (!empty($request->user()->avatar)) {
                 Storage::disk('public')->delete($request->user()->avatar);
             }
 
-            $newFileName = Str::after($request->avatar, 'tmp/');
+            $fileName = $avatar->hashName();
 
-            Storage::disk('public')->move($request->avatar, "img/$newFileName");
+            Storage::disk('public')->put('img/' . $fileName, file_get_contents($avatar));
 
-            $validated['avatar'] = "img/$newFileName";
+            $photoPath = Storage::url('profile/' . $fileName);
+
+            $validated['avatar'] = $photoPath;
+
         }
 
         // $request->user()->save();
@@ -64,11 +83,31 @@ class ProfileController extends Controller
 
     public function upload(Request $request)
     {
-        if ($request->hasFile('avatar')) {
-            $path = $request->file('avatar')->store('tmp', 'public');
-        }
 
-        return $path;
+        if ($request->hasFile('avatar')) {
+
+            // ambil parameter avatar
+            $avatar = $request->file('avatar');
+            $user = $request->user();
+
+            // cek apakah ada gambar lama
+            if ($user->avatar) {
+                $oldPath = str_replace('/storage/', '', $user->avatar);
+
+                Storage::disk('public')->delete($oldPath);
+            }
+
+            $fileName = $avatar->hashName();
+
+            Storage::disk('public')->put('img/' . $fileName, file_get_contents($avatar));
+
+            $photoPath = Storage::url('img/' . $fileName);
+
+            return $user->update([
+                'avatar' => $photoPath
+            ]);
+
+        }
     }
 
     /**
@@ -89,6 +128,7 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/')->with('success', 'Akun berhasil dihapus');;
+        return Redirect::to('/')->with('success', 'Akun berhasil dihapus');
+        ;
     }
 }
