@@ -72,7 +72,6 @@ class ProfileController extends Controller
             $photoPath = Storage::url('profile/' . $fileName);
 
             $validated['avatar'] = $photoPath;
-
         }
 
         // $request->user()->save();
@@ -106,7 +105,6 @@ class ProfileController extends Controller
             return $user->update([
                 'avatar' => $photoPath
             ]);
-
         }
     }
 
@@ -128,7 +126,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/')->with('success', 'Akun berhasil dihapus');
-        ;
+        return Redirect::to('/')->with('success', 'Akun berhasil dihapus');;
     }
 }

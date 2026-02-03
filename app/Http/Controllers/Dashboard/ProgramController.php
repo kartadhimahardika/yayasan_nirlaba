@@ -6,6 +6,7 @@ use App\Models\Program;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ProgramController extends Controller
@@ -32,6 +33,33 @@ class ProgramController extends Controller
         return view('dashboard.program.create');
     }
 
+    public function upload(Request $request)
+    {
+        if ($request->hasFile('file')) {
+
+            // ambil parameter photo
+            $photo = $request->file('photo');
+            $program = $request->program();
+
+            // cek apakah ada gambar lama
+            if ($program->photo) {
+                $oldPath = str_replace('/storage/', '', $program->photo);
+
+                Storage::disk('public')->delete($oldPath);
+            }
+
+            $fileName = $photo->hashName();
+
+            Storage::disk('public')->put('img/' . $fileName, file_get_contents($photo));
+
+            $photoPath = Storage::url('img/' . $fileName);
+
+            return $program->update([
+                'photo' => $photoPath
+            ]);
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -40,7 +68,8 @@ class ProgramController extends Controller
         Validator::make($request->all(), [
             'title'                 => 'required|unique:programs|min:4|max:255',
             'category_id'   => 'required',
-            'description'           => 'required|min:50'
+            'description'           => 'required|min:50',
+            'photo' => 'nullable|string'
         ], [
             'title.required'                => 'Field :attribute harus diisi',
             'category_id.required'  => 'Field :attribute harus dipilih',
@@ -57,6 +86,7 @@ class ProgramController extends Controller
             'slug'                  => Str::slug($request->title),
             'category_id'   => $request->category_id,
             'description'           => $request->description,
+            'photo' => $request->photo,
         ]);
 
         return redirect('/dashboard/programs')->with(['success' => 'Program baru berhasil ditambahkan']);
@@ -106,6 +136,8 @@ class ProgramController extends Controller
 
         return redirect('/dashboard/programs')->with(['success' => 'Program baru berhasil diedit']);
     }
+
+
 
     /**
      * Remove the specified resource from storage.

@@ -152,7 +152,7 @@
                     imageResizeMode: 'contain',
                     imageResizeUpscale: false,
                     server: {
-                        url: '/upload',
+                        url: "{{ route('program.upload') }}",
                         headers: {
                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
                         }

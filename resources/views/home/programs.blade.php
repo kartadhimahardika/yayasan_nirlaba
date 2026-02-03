@@ -43,7 +43,7 @@
                     <div
                         class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
                         <div class="h-64 w-full overflow-hidden">
-                            <img src="/images/unsplash.jpg" alt="Education Program" class="w-full h-full object-cover">
+                            <img src="{{ $program->photo }}" alt="Education Program" class="w-full h-full object-cover">
                         </div>
                         <div class="p-8">
                             <a href="/programs?category={{ $program->category->slug }}">
