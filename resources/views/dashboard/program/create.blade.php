@@ -11,14 +11,14 @@
             </h3>
         </div>
 
-        <form action="/dashboard/programs" method="POST" class="p-4 md:p-5" id="program-form"
+        <form action="{{ route('program.store') }}" method="POST" class="p-4 md:p-5" id="program-form"
             enctype="multipart/form-data">
             @csrf
             <div class="mb-4 col-span-2">
                 <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul</label>
                 <input type="text" name="title" id="title"
                     class="@error('title')
-                       bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
+                           bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
                     @enderror  border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     placeholder="Tulis judul program" autofocus autocomplete="off" value="{{ old('title') }}">
                 @error('title')
@@ -30,11 +30,13 @@
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kategori</label>
                 <select name="category_id" id="category_id"
                     class="@error('category_id')
-                       bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
+                           bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
                     @enderror border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                     <option selected="" value="">Pilih Kategori</option>
                     @foreach (App\Models\Category::get() as $category)
-                        <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>{{ $category->name }}</option>
+                        <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>
+                            {{ $category->name }}
+                        </option>
                     @endforeach
                 </select>
                 @error('category_id')
@@ -46,7 +48,7 @@
                     Program</label>
                 <textarea id="description" name="description" rows="4"
                     class="hidden @error('description')
-                       bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
+                           bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
                     @enderror block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Tulis deskripsi program disini">{{ old('description') }}</textarea>
 
@@ -59,10 +61,12 @@
 
             <div>
 
-                <label class="block mb-2.5 text-sm font-medium text-heading" for="avatar">Upload Gambar</label>
+                <label class="block mb-2.5 text-sm font-medium text-heading">Upload Gambar</label>
+
+                <input type="hidden" name="photo" id="photo-hidden">
+
                 <input
-                    class=" @error('photo')
-                       bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
+                    class=" @error('photo') bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
                     @enderror cursor-pointer bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full shadow-xs placeholder:text-body"
                     id="photo" name="photo" type="file" accept="image/*">
                 @error('photo')
@@ -146,18 +150,22 @@
                 if (!inputElement) return;
 
                 FilePond.create(inputElement, {
-                    acceptedFileTypes: ['image/*'],
-                    maxFileSize: '5MB',
-                    imageResizeTargetWidth: 600,
-                    imageResizeMode: 'contain',
-                    imageResizeUpscale: false,
                     server: {
-                        url: "{{ route('program.upload') }}",
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        process: {
+                            url: "{{ route('program.upload') }}",
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            onload: (response) => {
+                                const data = JSON.parse(response);
+                                document.getElementById('photo-hidden').value = data.path;
+                                return data.path;
+                            }
                         }
                     }
                 });
+
             });
         </script>
     @endpush

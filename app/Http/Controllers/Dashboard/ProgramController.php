@@ -6,6 +6,7 @@ use App\Models\Program;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Program\StoreProgramRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -35,62 +36,52 @@ class ProgramController extends Controller
 
     public function upload(Request $request)
     {
-        if ($request->hasFile('file')) {
+        $request->validate([
+            'photo' => 'required|image|max:5000',
+        ]);
 
-            // ambil parameter photo
-            $photo = $request->file('photo');
-            $program = $request->program();
+        $path = $request->file('photo')->store('tmp/program', 'public');
 
-            // cek apakah ada gambar lama
-            if ($program->photo) {
-                $oldPath = str_replace('/storage/', '', $program->photo);
-
-                Storage::disk('public')->delete($oldPath);
-            }
-
-            $fileName = $photo->hashName();
-
-            Storage::disk('public')->put('img/' . $fileName, file_get_contents($photo));
-
-            $photoPath = Storage::url('img/' . $fileName);
-
-            return $program->update([
-                'photo' => $photoPath
-            ]);
-        }
+        return response()->json([
+            'path' => $path
+        ]);
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProgramRequest $request)
     {
-        Validator::make($request->all(), [
-            'title'                 => 'required|unique:programs|min:4|max:255',
-            'category_id'   => 'required',
-            'description'           => 'required|min:50',
-            'photo' => 'nullable|string'
-        ], [
-            'title.required'                => 'Field :attribute harus diisi',
-            'category_id.required'  => 'Field :attribute harus dipilih',
-            'description.required'          => 'Field :attribute harus diisi'
-        ], [
-            'title'                 => 'Judul',
-            'category_id'   => 'Kategori',
-            'description'           => 'Deskripsi'
-        ])->validate();
 
+        $data = $request->validated();
+
+        $photoPath = null;
+
+        if ($data['photo']) {
+
+            $newPath = str_replace('tmp/', '', $data['photo']);
+
+            Storage::disk('public')->move(
+                $data['photo'],
+                "img/$newPath"
+            );
+
+            $photoPath = Storage::url("img/$newPath");
+        }
 
         Program::create([
-            'title'                 => $request->title,
-            'slug'                  => Str::slug($request->title),
-            'category_id'   => $request->category_id,
-            'description'           => $request->description,
-            'photo' => $request->photo,
+            'title' => $data['title'],
+            'slug' => Str::slug($data['title']),
+            'category_id' => $data['category_id'],
+            'description' => $data['description'],
+            'photo' => $photoPath
         ]);
 
-        return redirect('/dashboard/programs')->with(['success' => 'Program baru berhasil ditambahkan']);
+        return redirect()->route('dashboard.program')
+            ->with('success', 'Program baru berhasil ditambahkan');
     }
+
 
     /**
      * Display the specified resource.
@@ -114,24 +105,45 @@ class ProgramController extends Controller
     public function update(Request $request, Program $program)
     {
         Validator::make($request->all(), [
-            'title'         => 'required|min:4|max:255|unique:programs,title,' . $program->id,
-            'category_id'   => 'required',
-            'description'   => 'required'
+            'title' => 'sometimes|min:4|max:255',
+            'category_id' => 'required',
+            'description' => 'required|min:50',
+            'photo' => 'nullable|string'
         ], [
-            'title.required'        => 'Field :attribute harus diisi',
-            'category_id.required'  => 'Field :attribute harus dipilih',
-            'description.required'  => 'Field :attribute harus diisi'
+            'category_id.required' => 'Field :attribute harus dipilih',
+            'description.required' => 'Field :attribute harus diisi'
         ], [
-            'title'                 => 'Judul',
-            'category_id'   => 'Kategori',
-            'description'           => 'Deskripsi'
+            'title' => 'Judul',
+            'category_id' => 'Kategori',
+            'description' => 'Deskripsi'
         ])->validate();
 
+        $photoPath = null;
+
+        if ($request->photo) {
+
+            if ($program->photo) {
+
+                $oldPath = str_replace('/storage/', '', $program->photo);
+                Storage::disk('public')->delete($oldPath);
+            }
+
+            $newPath = str_replace('tmp/', '', $request->photo);
+
+            Storage::disk('public')->move(
+                $request->photo,
+                "img/$newPath"
+            );
+
+            $photoPath = Storage::url("img/$newPath");
+        }
+
         $program->update([
-            'title'                 => $request->title,
-            'slug'                  => Str::slug($request->title),
-            'category_id'   => $request->category_id,
-            'description'           => $request->description,
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'category_id' => $request->category_id,
+            'description' => $request->description,
+            'photo' => $photoPath ?? $program->photo // Jika tidak ada gambar baru, maka gunakan gambar lama
         ]);
 
         return redirect('/dashboard/programs')->with(['success' => 'Program baru berhasil diedit']);

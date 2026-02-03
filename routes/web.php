@@ -57,7 +57,7 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
     // Program
     Route::prefix('dashboard/programs')->group(function () {
         Route::get('/', [DashboardProgramController::class, 'index'])->name('dashboard.program');
-        Route::post('/', [DashboardProgramController::class, 'store']);
+        Route::post('/', [DashboardProgramController::class, 'store'])->name('program.store');
         Route::get('/create', [DashboardProgramController::class, 'create'])->name('dashboard.program.create');
         Route::post('/upload', [DashboardProgramController::class, 'upload'])->name('program.upload');
         Route::delete('/{program:slug}', [DashboardProgramController::class, 'destroy']);
