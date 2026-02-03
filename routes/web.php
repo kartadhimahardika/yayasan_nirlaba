@@ -59,7 +59,7 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
         Route::get('/', [DashboardProgramController::class, 'index'])->name('dashboard.program');
         Route::post('/', [DashboardProgramController::class, 'store']);
         Route::get('/create', [DashboardProgramController::class, 'create'])->name('dashboard.program.create');
-        Route::get('/upload', [DashboardProgramController::class, 'upload']);
+        Route::post('/upload', [DashboardProgramController::class, 'upload'])->name('program.upload');
         Route::delete('/{program:slug}', [DashboardProgramController::class, 'destroy']);
         Route::get('/{program:slug}/edit', [DashboardProgramController::class, 'edit'])->name('dashboard.program.edit');
         Route::patch('/{program:slug}', [DashboardProgramController::class, 'update']);
