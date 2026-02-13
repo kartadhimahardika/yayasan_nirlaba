@@ -32,7 +32,7 @@
                             Rp {{ number_format($donation->amount, 0, ',', '.') }}
                         </p>
                         <p><span class="font-semibold">Metode:</span>
-                            Transfer Bank
+                            Transfer {{ $donation->bank->name }}
                         </p>
                         <p>
                             <span class="font-semibold">Status:</span>

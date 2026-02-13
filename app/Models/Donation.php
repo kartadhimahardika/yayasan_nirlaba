@@ -13,6 +13,7 @@ class Donation extends Model
     protected $fillable = [
         'user_id',
         'slug',
+        'bank_id',
         'name',
         'phone',
         'email',
@@ -21,6 +22,11 @@ class Donation extends Model
         'message',
         'status',
     ];
+
+    public function bank()
+    {
+        return $this->belongsTo(Bank::class);
+    }
 
     const STATUS_PENDING = 'Tertunda';
 
@@ -56,7 +62,7 @@ class Donation extends Model
     public function scopeFilter(Builder $query, array $filters): void
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {
-            return $query->where('name', 'like', '%'.$search.'%');
+            return $query->where('name', 'like', '%' . $search . '%');
         });
     }
 }

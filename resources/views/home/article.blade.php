@@ -38,7 +38,21 @@
                         </div>
                     </div>
 
+
+
                     <div class="mt-6">
+                        <button onclick="copyLink()"
+                            class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition cursor-pointer">
+                            Salin Link
+                        </button>
+
+                        <button
+                            class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition cursor-pointer">
+                            <a href="https://api.whatsapp.com/send?text={{ urlencode('Cek halaman ini: ' . url()->current()) }}"
+                                target="_blank">
+                                Share ke WhatsApp
+                            </a>
+                        </button>
                         <a href="/articles"
                             class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg">
                             <span>Kembali</span>
@@ -51,5 +65,29 @@
 
         </div>
     </div>
+
+    @push('script')
+        <script>
+            function copyLink() {
+                var input = document.createElement("input");
+                input.value = "{{ url()->current() }}";
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand("copy");
+                document.body.removeChild(input);
+
+                var toast = document.createElement("div");
+                toast.innerText = "Link berhasil disalin!";
+                toast.className =
+                    toast.className =
+                    "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-green-600 text-white px-6 py-3 rounded-xl shadow-lg opacity-0 transition-opacity duration-300";
+
+                document.body.appendChild(toast);
+
+                setTimeout(() => toast.classList.remove("opacity-0"), 10);
+                setTimeout(() => toast.remove(), 2000);
+            }
+        </script>
+    @endpush
 
 </x-layout>
