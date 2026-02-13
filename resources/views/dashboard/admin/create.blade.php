@@ -1,4 +1,7 @@
 <x-app-layout>
+    @push('style')
+        <link href="filepond.css" rel="stylesheet" />
+    @endpush
 
     <!-- Modal content -->
     <div class="relative bg-white rounded-lg shadow-sm dark:bg-zinc-800">
@@ -10,7 +13,7 @@
             </h3>
         </div>
         <!-- Modal body -->
-        <form action="/dashboard/admin" method="POST" class="p-4 md:p-5">
+        <form action="/dashboard/admin" method="POST" class="p-4 md:p-5" enctype="multipart/form-data">
             @csrf
             <div class="mb-4 col-span-2">
                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
@@ -62,6 +65,18 @@
                 @enderror
             </div>
 
+            <div>
+                <label class="block mb-2.5 text-sm font-medium text-heading">Upload Gambar</label>
+                <input type="hidden" name="avatar" id="avatar-hidden">
+                <input
+                    class=" @error('avatar') bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
+                    @enderror cursor-pointer bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full shadow-xs placeholder:text-body"
+                    id="avatar" name="avatar" type="file" accept="image/*">
+                @error('avatar')
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+
             <div class="mt-4 flex gap-2">
                 <button type="submit"
                     class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 cursor-pointer">
@@ -81,4 +96,47 @@
             </div>
         </form>
     </div>
+    @push('script')
+        {{-- Gambar --}}
+        <script>
+            const input = document.getElementById('avatar');
+            const previewPhoto = () => {
+                const file = input.files;
+                if (file) {
+                    const fileReader = new FileReader();
+                    const preview = document.getElementById('photo-preview');
+                    fileReader.onload = function(event) {
+                        preview.setAttribute('src', event.target.result);
+                    }
+                    fileReader.readAsDataURL(file[0]);
+                }
+            }
+            input.addEventListener("change", previewPhoto);
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const inputElement = document.querySelector('#avatar')
+
+                if (!inputElement) return;
+
+                FilePond.create(inputElement, {
+                    server: {
+                        process: {
+                            url: "{{ route('admin.upload') }}",
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            onload: (response) => {
+                                const data = JSON.parse(response);
+                                document.getElementById('avatar-hidden').value = data.path;
+                                return data.path;
+                            }
+                        }
+                    }
+                });
+
+            });
+        </script>
+    @endpush
 </x-app-layout>

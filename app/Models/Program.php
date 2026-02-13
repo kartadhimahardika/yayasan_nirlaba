@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Program extends Model
 {
@@ -26,14 +26,13 @@ class Program extends Model
     public function scopeFilter(Builder $query, array $filters): void
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {
-            return $query->where('title', 'like', '%' . $search . '%');
+            return $query->where('title', 'like', '%'.$search.'%');
         });
 
         $query->when($filters['category'] ?? false, function ($query, $category) {
             return $query->whereHas(
                 'category',
-                fn(Builder $query) =>
-                $query->where('slug', $category)
+                fn (Builder $query) => $query->where('slug', $category)
             );
         });
     }

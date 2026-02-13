@@ -1,11 +1,11 @@
 <x-layout>
     <section id="programs" class="py-24 bg-gradient-to-br from-blue-50 via-white to-green-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">Berita <span class="text-blue-600">Kami</span>
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">Artikel <span class="text-blue-600">Kami</span>
             </h1>
             <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                Comprehensive initiatives designed to create sustainable change and empower communities worldwide
-                through education, healthcare, and economic development.</p>
+                Halaman ini memuat artikel dan informasi kegiatan yang dilaksanakan oleh Panti Asuhan Hindu Dharma Jati
+                I</p>
         </div>
     </section>
 
@@ -29,7 +29,7 @@
                     </div>
                     <input type="search" id="default-search"
                         class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Cari Judul Berita" autocomplete="off" name="search" />
+                        placeholder="Cari Judul Artikel" autocomplete="off" name="search" />
                     <button type="submit"
                         class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                 </div>
@@ -40,8 +40,8 @@
                 @foreach ($articles as $article)
                     <div
                         class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                        <div class="h-64 w-full overflow-hidden">
-                            <img src="/images/unsplash.jpg" alt="{{ $article->title }}"
+                        <div class="relative aspect-[16/9] overflow-hidden">
+                            <img src="{{ $article->photo }}" alt="{{ $article->title }}"
                                 class="w-full h-full object-cover">
                         </div>
                         <div class="p-8">

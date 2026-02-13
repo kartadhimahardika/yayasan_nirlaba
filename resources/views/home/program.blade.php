@@ -4,8 +4,8 @@
         <div class="max-w-6xl mx-auto px-6 py-8">
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
 
-                <div class="relative h-80 overflow-hidden">
-                    <img src="/images/unsplash.jpg" alt="{{ $program->title }}"
+                <div class="relative aspect-[16/9] overflow-hidden">
+                    <img src="{{ $program->photo }}" alt="{{ $program->title }}"
                         class="w-full h-full object-cover object-center">
 
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>

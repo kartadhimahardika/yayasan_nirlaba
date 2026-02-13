@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Bank;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class BankSeeder extends Seeder
 {

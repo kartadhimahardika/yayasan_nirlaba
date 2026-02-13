@@ -17,10 +17,10 @@ class TeamFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'     => $this->faker->name(),
-            'photo'    => 'https://via.placeholder.com/150',
+            'name' => $this->faker->name(),
+            'photo' => 'https://via.placeholder.com/150',
             'position' => $this->faker->jobTitle(),
-            'bio'      => $this->faker->paragraph(),
+            'bio' => $this->faker->paragraph(),
         ];
     }
 }

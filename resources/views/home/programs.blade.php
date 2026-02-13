@@ -4,8 +4,8 @@
             <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">Program <span class="text-blue-600">Kami</span>
             </h1>
             <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                Comprehensive initiatives designed to create sustainable change and empower communities worldwide
-                through education, healthcare, and economic development.</p>
+                Halaman ini memuat informasi mengenai program-program yang dilaksanakan oleh Panti Asuhan Hindu Dharma
+                Jati I dalam mendukung pembinaan dan pendidikan anak asuh</p>
         </div>
     </section>
 
@@ -42,8 +42,9 @@
                 @foreach ($programs as $program)
                     <div
                         class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                        <div class="h-64 w-full overflow-hidden">
-                            <img src="{{ $program->photo }}" alt="Education Program" class="w-full h-full object-cover">
+                        <div class="relative aspect-[16/9] overflow-hidden">
+                            <img src="{{ $program->photo }}" alt="{{ $program->title }}"
+                                class="w-full h-full object-cover">
                         </div>
                         <div class="p-8">
                             <a href="/programs?category={{ $program->category->slug }}">

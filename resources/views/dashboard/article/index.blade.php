@@ -28,7 +28,7 @@
 
         <div class="bg-white shadow-sm  border-gray-200 dark:bg-zinc-800 rounded-lg">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center py-6">
+                <div class="flex flex-col gap-4 md:flex-row md:justify-between md:items-center py-6">
                     <div>
                         <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Manajemen Artikel</h1>
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Artikel Oleh : {{ Auth::user()->name }}
@@ -49,7 +49,7 @@
                                 </div>
                                 <input type="text" id="simple-search" name="keyword"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    placeholder="Cari Berita" autocomplete="off">
+                                    placeholder="Cari Artikel" autocomplete="off">
                             </div>
                         </form>
 

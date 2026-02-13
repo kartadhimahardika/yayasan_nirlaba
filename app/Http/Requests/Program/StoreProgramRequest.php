@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Program;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreProgramRequest extends FormRequest
 {
@@ -26,7 +26,7 @@ class StoreProgramRequest extends FormRequest
             'title' => 'required|min:4|max:255',
             'category_id' => 'required',
             'description' => 'required|min:50',
-            'photo' => 'nullable|string'
+            'photo' => 'nullable|string',
         ];
     }
 
@@ -40,7 +40,7 @@ class StoreProgramRequest extends FormRequest
         return [
             'title.required' => 'Field :attribute harus diisi',
             'category_id.required' => 'Field :attribute harus dipilih',
-            'description.required' => 'Field :attribute harus diisi'
+            'description.required' => 'Field :attribute harus diisi',
         ];
     }
 
@@ -54,7 +54,7 @@ class StoreProgramRequest extends FormRequest
         return [
             'title' => 'Judul',
             'category_id' => 'Kategori',
-            'description' => 'Deskripsi'
+            'description' => 'Deskripsi',
         ];
     }
 }

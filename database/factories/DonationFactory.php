@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Donation>
@@ -19,7 +18,7 @@ class DonationFactory extends Factory
     public function definition(): array
     {
         return [
-            'slug' => Str::slug($this->faker->name . '-' . Str::random(6)),
+            'slug' => Str::slug($this->faker->name.'-'.Str::random(6)),
             'name' => $this->faker->name(),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),

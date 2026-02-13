@@ -5,11 +5,6 @@
             <!-- Logo -->
             <a href="{{ route('home') }}">
                 <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                            <span class="text-white font-bold text-sm">YN</span>
-                        </div>
-                    </div>
                     <div class="ml-3 leading-tight">
                         <span class="block text-sm font-semibold text-gray-900">Panti Asuhan Hindu</span>
                         <span class="block text-sm font-semibold text-gray-900">Dharma Jati I</span>

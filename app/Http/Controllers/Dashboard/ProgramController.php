@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Models\Program;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Program\StoreProgramRequest;
+use App\Http\Requests\Program\UpdateProgramRequest;
+use App\Models\Program;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ProgramController extends Controller
 {
@@ -20,7 +20,7 @@ class ProgramController extends Controller
         $programs = Program::with('category')->latest();
 
         if (request('keyword')) {
-            $programs->where('title', 'like', '%' . request('keyword') . '%');
+            $programs->where('title', 'like', '%'.request('keyword').'%');
         }
 
         return view('dashboard.program.index', ['programs' => $programs->paginate(10)->withQueryString()]);
@@ -43,10 +43,9 @@ class ProgramController extends Controller
         $path = $request->file('photo')->store('tmp/program', 'public');
 
         return response()->json([
-            'path' => $path
+            'path' => $path,
         ]);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -75,13 +74,12 @@ class ProgramController extends Controller
             'slug' => Str::slug($data['title']),
             'category_id' => $data['category_id'],
             'description' => $data['description'],
-            'photo' => $photoPath
+            'photo' => $photoPath,
         ]);
 
         return redirect()->route('dashboard.program')
             ->with('success', 'Program baru berhasil ditambahkan');
     }
-
 
     /**
      * Display the specified resource.
@@ -102,25 +100,13 @@ class ProgramController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Program $program)
+    public function update(UpdateProgramRequest $request, Program $program)
     {
-        Validator::make($request->all(), [
-            'title' => 'sometimes|min:4|max:255',
-            'category_id' => 'required',
-            'description' => 'required|min:50',
-            'photo' => 'nullable|string'
-        ], [
-            'category_id.required' => 'Field :attribute harus dipilih',
-            'description.required' => 'Field :attribute harus diisi'
-        ], [
-            'title' => 'Judul',
-            'category_id' => 'Kategori',
-            'description' => 'Deskripsi'
-        ])->validate();
+        $data = $request->validated();
 
         $photoPath = null;
 
-        if ($request->photo) {
+        if ($data['photo']) {
 
             if ($program->photo) {
 
@@ -128,10 +114,10 @@ class ProgramController extends Controller
                 Storage::disk('public')->delete($oldPath);
             }
 
-            $newPath = str_replace('tmp/', '', $request->photo);
+            $newPath = str_replace('tmp/', '', $data['photo']);
 
             Storage::disk('public')->move(
-                $request->photo,
+                $data['photo'],
                 "img/$newPath"
             );
 
@@ -139,24 +125,30 @@ class ProgramController extends Controller
         }
 
         $program->update([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'category_id' => $request->category_id,
-            'description' => $request->description,
-            'photo' => $photoPath ?? $program->photo // Jika tidak ada gambar baru, maka gunakan gambar lama
+            'title' => $data['title'],
+            'slug' => Str::slug($data['title']),
+            'category_id' => $data['category_id'],
+            'description' => $data['description'],
+            'photo' => $photoPath ?? $program->photo, // Jika tidak ada gambar baru, maka gunakan gambar lama
         ]);
 
         return redirect('/dashboard/programs')->with(['success' => 'Program baru berhasil diedit']);
     }
-
-
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Program $program)
     {
+        if ($program->photo) {
+            $photoPath = public_path($program->photo);
+            if (file_exists($photoPath)) {
+                unlink($photoPath);
+            }
+        }
+
         $program->delete();
+
         return redirect('/dashboard/programs')->with(['success' => 'Program berhasil dihapus']);
     }
 }
