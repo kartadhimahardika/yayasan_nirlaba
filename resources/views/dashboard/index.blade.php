@@ -34,6 +34,14 @@
             <p class="mt-2 text-3xl font-bold text-indigo-600">{{ $jumlahKategori }}</p>
         </div>
 
+        <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-md dark:border-gray-800 dark:bg-neutral-900">
+            <a href="/dashboard/bank"
+                class="text-lg font-semibold text-gray-800 dark:text-gray-200 hover:underline">Nomor Rekening</a>
+            <p class="mt-2 text-3xl font-bold text-indigo-600">{{ $jumlahNoRekening }}</p>
+        </div>
+
+
+
         <!-- Card 2 -->
         <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-md dark:border-gray-800 dark:bg-neutral-900">
             <a href="/dashboard/programs"
@@ -50,7 +58,9 @@
 
         <!-- Card 4 -->
         <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-md dark:border-gray-800 dark:bg-neutral-900">
-            <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Total Donasi</h2>
+            <a href="/dashboard/donation"
+                class="text-lg font-semibold text-gray-800 dark:text-gray-200 hover:underline">Total
+                Donasi</a>
             <p class="mt-2 text-3xl font-bold text-blue-600">{{ $jumlahDonation }}</p>
         </div>
 

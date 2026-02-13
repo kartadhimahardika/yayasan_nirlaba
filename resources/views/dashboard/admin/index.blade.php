@@ -28,7 +28,7 @@
 
         <div class="bg-white shadow-sm  border-gray-200 dark:bg-zinc-800 rounded-lg">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center py-6">
+                <div class="flex flex-col gap-4 md:flex-row md:justify-between md:items-center py-6">
                     <div data-oid="tsb2sel">
                         <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Manajemen Admin</h1>
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Manajeman admin anda disini

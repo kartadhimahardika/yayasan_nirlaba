@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
-use App\Models\Category;
-use App\Models\Program;
 use App\Models\Article;
-use App\Models\User;
+use App\Models\Bank;
+use App\Models\Category;
 use App\Models\Donation;
-
+use App\Models\Program;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -18,10 +16,11 @@ class DashboardController extends Controller
     {
         return view('dashboard.index', [
             'jumlahKategori' => Category::count(),
-            'jumlahProgram'  => Program::count(),
-            'jumlahArtikel'  => Article::count(),
+            'jumlahNoRekening' => Bank::count(),
+            'jumlahProgram' => Program::count(),
+            'jumlahArtikel' => Article::count(),
             'jumlahDonation' => Donation::count(),
-            'jumlahAdmin'    => User::count(),
+            'jumlahAdmin' => User::count(),
         ]);
     }
 }

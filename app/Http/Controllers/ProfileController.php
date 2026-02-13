@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
-use Illuminate\Support\Str;
+use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
@@ -61,15 +61,15 @@ class ProfileController extends Controller
 
             dd($avatar);
 
-            if (!empty($request->user()->avatar)) {
+            if (! empty($request->user()->avatar)) {
                 Storage::disk('public')->delete($request->user()->avatar);
             }
 
             $fileName = $avatar->hashName();
 
-            Storage::disk('public')->put('img/' . $fileName, file_get_contents($avatar));
+            Storage::disk('public')->put('img/'.$fileName, file_get_contents($avatar));
 
-            $photoPath = Storage::url('profile/' . $fileName);
+            $photoPath = Storage::url('profile/'.$fileName);
 
             $validated['avatar'] = $photoPath;
         }
@@ -98,12 +98,12 @@ class ProfileController extends Controller
 
             $fileName = $avatar->hashName();
 
-            Storage::disk('public')->put('img/' . $fileName, file_get_contents($avatar));
+            Storage::disk('public')->put('img/'.$fileName, file_get_contents($avatar));
 
-            $photoPath = Storage::url('img/' . $fileName);
+            $photoPath = Storage::url('img/'.$fileName);
 
             return $user->update([
-                'avatar' => $photoPath
+                'avatar' => $photoPath,
             ]);
         }
     }
@@ -126,6 +126,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/')->with('success', 'Akun berhasil dihapus');;
+        return Redirect::to('/')->with('success', 'Akun berhasil dihapus');
     }
 }

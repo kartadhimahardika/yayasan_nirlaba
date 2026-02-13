@@ -1,5 +1,6 @@
 <x-app-layout>
     @push('style')
+        <link href="filepond.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
     @endpush
     <div class="relative bg-white rounded-lg shadow-sm dark:bg-zinc-800">
@@ -10,7 +11,8 @@
             </h3>
         </div>
 
-        <form action="/dashboard/programs/{{ $program->slug }}" method="POST" class="p-4 md:p-5" id="program-form">
+        <form action="/dashboard/programs/{{ $program->slug }}" method="POST" class="p-4 md:p-5" id="program-form"
+            enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             <div class="mb-4 col-span-2">
@@ -54,6 +56,21 @@
                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                 </div>
             @enderror
+
+            <div>
+
+                <label class="block mb-2.5 text-sm font-medium text-heading">Upload Gambar</label>
+
+                <input type="hidden" name="photo" id="photo-hidden">
+
+                <input
+                    class=" @error('photo') bg-red-50 border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
+                    @enderror cursor-pointer bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full shadow-xs placeholder:text-body"
+                    id="photo" name="photo" type="file" accept="image/*">
+                @error('photo')
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
             <div class="mt-4 flex gap-2">
                 <button type="submit"
                     class="inline-flex items-center px-5 py-2.5 text-sm font-medium rounded-lg bg-blue-700 text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-colors duration-200 cursor-pointer dark:bg-transparent dark:text-blue-400 dark:border dark:border-blue-400/40 dark:hover:bg-white/10 dark:focus:ring-blue-800">
@@ -72,6 +89,7 @@
         </form>
     </div>
     @push('script')
+        {{-- Quill --}}
         <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 
         <script>
@@ -92,6 +110,48 @@
 
                 this.submit();
             })
+        </script>
+
+        {{-- Gambar --}}
+        <script>
+            const input = document.getElementById('photo');
+            const previewPhoto = () => {
+                const file = input.files;
+                if (file) {
+                    const fileReader = new FileReader();
+                    const preview = document.getElementById('photo-preview');
+                    fileReader.onload = function(event) {
+                        preview.setAttribute('src', event.target.result);
+                    }
+                    fileReader.readAsDataURL(file[0]);
+                }
+            }
+            input.addEventListener("change", previewPhoto);
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const inputElement = document.querySelector('#photo');
+
+                if (!inputElement) return;
+
+                FilePond.create(inputElement, {
+                    server: {
+                        process: {
+                            url: "{{ route('program.upload') }}",
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            onload: (response) => {
+                                const data = JSON.parse(response);
+                                document.getElementById('photo-hidden').value = data.path;
+                                return data.path;
+                            }
+                        }
+                    }
+                });
+
+            });
         </script>
     @endpush
 </x-app-layout>

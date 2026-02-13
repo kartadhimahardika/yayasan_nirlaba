@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Models\User;
-use App\Models\Article;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 
 class ArticleController extends Controller
 {

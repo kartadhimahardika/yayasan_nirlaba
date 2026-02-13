@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ArticleSeeder extends Seeder
 {
@@ -15,7 +14,7 @@ class ArticleSeeder extends Seeder
     public function run(): void
     {
         Article::factory(10)->recycle([
-            User::all()
+            User::all(),
         ])->create();
     }
 }

@@ -3,8 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Article>
@@ -19,12 +19,13 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         $title = fake()->sentence(rand(6, 8));
+
         return [
             'title' => $title,
             'slug' => Str::slug($title),
             'photo' => $this->faker->imageUrl(800, 600, 'news', true),
             'description' => fake()->text(),
-            'user_id' => User::factory()
+            'user_id' => User::factory(),
         ];
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Donation extends Model
 {
@@ -19,16 +19,44 @@ class Donation extends Model
         'amount',
         'proof',
         'message',
-        'status'
+        'status',
     ];
 
-    public function user(): BelongsTo
+    const STATUS_PENDING = 'Tertunda';
+
+    const STATUS_VERIFIED = 'Terverifikasi';
+
+    const STATUS_REJECTED = 'Ditolak';
+
+    // Ambil semua status (untuk dropdown)
+    public static function getStatuses(): array
     {
-        return $this->belongsTo(User::class);
+        return [
+            self::STATUS_PENDING,
+            self::STATUS_VERIFIED,
+            self::STATUS_REJECTED,
+        ];
     }
 
     public function scopeTerverifikasi($query)
     {
-        return $query->where('status', 'Terverifikasi');
+        return $query->where('status', self::STATUS_VERIFIED);
+    }
+
+    public function scopeTertunda($query)
+    {
+        return $query->where('status', self::STATUS_PENDING);
+    }
+
+    public function scopeDitolak($query)
+    {
+        return $query->where('status', self::STATUS_REJECTED);
+    }
+
+    public function scopeFilter(Builder $query, array $filters): void
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            return $query->where('name', 'like', '%'.$search.'%');
+        });
     }
 }

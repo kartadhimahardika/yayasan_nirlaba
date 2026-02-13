@@ -5,8 +5,8 @@
 
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
 
-                <div class="relative h-80 overflow-hidden">
-                    <img src="/images/unsplash.jpg" alt="{{ $article->title }}"
+                <div class="relative aspect-[16/9] overflow-hidden">
+                    <img src="{{ $article->photo }}" alt="{{ $article->title }}"
                         class="w-full h-full object-cover object-center">
 
                     <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>

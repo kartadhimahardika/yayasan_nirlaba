@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class CategoryFactory extends Factory
 {
     protected $model = Category::class;
+
     /**
      * Define the model's default state.
      *
@@ -20,6 +21,7 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         $category_name = fake()->sentence(rand(1, 3), false);
+
         return [
             'name' => $category_name,
             'slug' => Str::slug($category_name),

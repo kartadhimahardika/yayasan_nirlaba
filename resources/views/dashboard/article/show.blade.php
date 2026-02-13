@@ -22,15 +22,19 @@
                         Edit
                     </a>
 
-                    <button
-                        class="flex items-center px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors font-medium">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                            </path>
-                        </svg>
-                        Delete
-                    </button>
+                    <form id="delete-form-{{ $article->id }}" action="{{ route('article.destroy', $article->slug) }}"
+                        method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" onclick="showConfirm({{ $article->id }})"
+                            class="inline-flex items-center px-6 py-2 text-sm font-medium rounded-lg bg-red-600 text-white hover:bg-red-700 transition">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                            Hapus
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -40,11 +44,11 @@
         <div class="w-full max-w-3xl mx-auto space-y-10">
 
             <div class="bg-white dark:bg-zinc-800 rounded-xl shadow-sm overflow-hidden">
-                <div class="h-72 bg-zinc-200 dark:bg-zinc-700 flex items-center justify-center">
+                <div class="relative aspect-[16/9]">
 
                     @if ($article->photo)
-                        <img src="{{ asset('storage/' . $article->photo) }}" class="h-full w-full object-cover"
-                            alt="{{ $article->title }}">
+                        <img src="{{ $article->photo ?? asset('images/avatar.jpg') }}"
+                            class="h-full w-full object-cover" alt="{{ $article->title }}">
                     @else
                         <div class="text-center">
                             <div
@@ -82,4 +86,38 @@
             </div>
         </div>
     </div>
+
+    {{-- popup --}}
+    <div id="confirm-popup" class="fixed inset-0 flex hidden items-center justify-center z-50">
+
+        <div class="bg-white rounded-lg p-6 max-w-sm w-full text-center">
+            <h2 class="text-lg font-bold mb-4">Hapus Artikel?</h2>
+            <p class="mb-6">Data akan terhapus permanen!</p>
+            <div class="flex justify-center space-x-4">
+                <button id="cancel-btn" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Batal</button>
+                <button id="confirm-btn" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Hapus</button>
+            </div>
+        </div>
+    </div>
+
+    @push('script')
+        <script>
+            let formToSubmit = null;
+
+            function showConfirm(id) {
+                formToSubmit = document.getElementById('delete-form-' + id);
+                document.getElementById('confirm-popup').classList.remove('hidden');
+            }
+
+            document.getElementById('cancel-btn').addEventListener('click', function() {
+                document.getElementById('confirm-popup').classList.add('hidden');
+            });
+
+            document.getElementById('confirm-btn').addEventListener('click', function() {
+                if (formToSubmit) formToSubmit.submit();
+            });
+        </script>
+    @endpush
+
+
 </x-app-layout>

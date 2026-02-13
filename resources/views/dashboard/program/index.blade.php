@@ -41,8 +41,7 @@
                 <div class="flex flex-col gap-4 md:flex-row md:justify-between md:items-center py-6">
                     <div>
                         <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Manajemen Program</h1>
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Manage and organize your educational
-                            programs
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Manajemen Program Disini
                         </p>
                     </div>
                     <div class="w-full md:w-1/2">
@@ -101,7 +100,7 @@
                                     Isi</th>
                                 <th
                                     class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-white">
-                                    Actions</th>
+                                    Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200 dark:bg-zinc-800">

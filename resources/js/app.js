@@ -22,6 +22,12 @@ FilePond.registerPlugin(FilePondPluginFileValidateType);
 
 window.FilePond = FilePond;
 
+import Quill from 'quill';
+import "quill/dist/quill.core.css";
+
+window.Quill = Quill;
+
+
 Alpine.plugin(focus);
 
 window.Alpine = Alpine;

@@ -1,5 +1,13 @@
 <x-layout>
-
+    <section id="programs" class="py-24 bg-gradient-to-br from-blue-50 via-white to-green-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-blue-600 mb-6">DETAIL <span class="text-gray-900">DONASI</span>
+            </h1>
+            {{-- <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                Halaman donasi ini menyediakan informasi dan sarana bagi masyarakat untuk berpartisipasi dalam mendukung
+                kegiatan dan pembinaan anak asuh di Panti Asuhan Hindu Dharma Jati I</p> --}}
+        </div>
+    </section>
     <div class="pt-20 max-w-3xl mx-auto px-6 py-12">
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
             <div class="p-6">
@@ -42,21 +50,15 @@
 
                     <div class="mt-4">
                         <p class="font-semibold">Pesan / Doa:</p>
-                        <p class="italic text-gray-800">{{ $donation->message }}</p>
+                        <p class="italic text-gray-800">{!! $donation->message !!}</p>
                     </div>
 
-                    <div class="mt-6">
-                        <p class="font-semibold mb-2">Bukti Transfer:</p>
-                        <div class="border border-gray-200 rounded-xl overflow-hidden">
-                            <img src="/images/unsplash.jpg" alt="Bukti" class="w-full object-cover">
-                        </div>
-                    </div>
                 </div>
 
                 <div class="mt-8 text-center">
                     <a href="/donation"
                         class="bg-gray-700 hover:bg-gray-800 text-white px-6 py-3 rounded-lg transition">
-                        ← Kembali ke Daftar Donasi
+                        Kembali ke Daftar Donasi
                     </a>
                 </div>
             </div>

@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Program;
 use App\Models\Category;
+use App\Models\Program;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ProgramSeeder extends Seeder
 {

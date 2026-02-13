@@ -80,9 +80,9 @@
                     Login
                 </button>
 
-                <div class="text-sm">
+                {{-- <div class="text-sm">
                     <span>Belum Punya Akun? <a href="{{ route('register') }}" class="text-sky-500">Daftar</a></span>
-                </div>
+                </div> --}}
 
             </div>
         </div>

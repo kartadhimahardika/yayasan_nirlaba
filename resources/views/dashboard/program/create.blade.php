@@ -127,6 +127,7 @@
             })
         </script>
 
+
         {{-- Gambar --}}
         <script>
             const input = document.getElementById('photo');

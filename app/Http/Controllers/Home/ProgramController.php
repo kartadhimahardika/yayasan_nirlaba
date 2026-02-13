@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Models\Program;
-use Illuminate\Http\Request;
-use App\Models\CategoryProgram;
 use App\Http\Controllers\Controller;
+use App\Models\Program;
 
 class ProgramController extends Controller
 {
