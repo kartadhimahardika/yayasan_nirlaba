@@ -29,7 +29,7 @@
                     </label>
                     <input id="name" type="text"
                         class="@error('user_cred') border-red-500 @enderror w-full rounded-sm border bg-neutral-50 px-2 py-2 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:cursor-not-allowed disabled:opacity-75 dark:bg-neutral-900/50 dark:focus-visible:outline-white"
-                        name="user_cred" />
+                        name="user_cred" value="{{ old('user_cred') }}" />
                     @error('user_cred')
                         <small class="pl-0.5 text-red-500">{{ $message }}</small>
                     @enderror

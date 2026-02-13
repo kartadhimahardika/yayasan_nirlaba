@@ -123,6 +123,12 @@
                     @enderror
                 </div>
 
+
+                <div class="mt-4 hidden" id="camera-wrapper">
+                    <video id="video" autoplay class="w-full max-w-md rounded-lg border"></video>
+                    <canvas id="canvas" class="hidden"></canvas>
+                </div>
+
                 <div class="flex gap-2">
                     <button type="submit"
                         class="px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm rounded-lg">
@@ -139,115 +145,6 @@
     </div>
 
     @push('script')
-        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
-        {{-- Quil --}}
-        <script>
-            const quill = new Quill('#editor', {
-                theme: 'snow',
-                placeholder: 'Tulis pesan disini'
-            });
-
-            const donationForm = document.querySelector('#donation-form');
-            const donationBody = document.querySelector('#message');
-
-            donationForm.addEventListener('submit', function(e) {
-                const content = quill.root.innerHTML;
-                donationBody.value = content;
-            });
-        </script>
-
-        {{-- Gambar --}}
-        <script>
-            const input = document.getElementById('proof');
-            const previewPhoto = () => {
-                const file = input.files;
-                if (file) {
-                    const fileReader = new FileReader();
-                    const preview = document.getElementById('proof-preview');
-                    fileReader.onload = function(event) {
-                        preview.setAttribute('src', event.target.result);
-                    }
-                    fileReader.readAsDataURL(file[0]);
-                }
-            }
-            input.addEventListener("change", previewPhoto);
-        </script>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const inputElement = document.querySelector('#proof');
-
-                if (!inputElement) return;
-
-                FilePond.create(inputElement, {
-                    server: {
-                        process: {
-                            url: "{{ route('donation.upload') }}",
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            },
-                            onload: (response) => {
-                                const data = JSON.parse(response);
-                                document.getElementById('proof-hidden').value = data.path;
-                                return data.path;
-                            }
-                        }
-                    }
-                });
-
-            });
-        </script>
-
-        {{-- Bank --}}
-        <script>
-            const bankSelect = document.getElementById('bank-select');
-            const bankDetail = document.getElementById('bank-detail');
-            const bankNumber = document.getElementById('bank-number');
-            const bankHolder = document.getElementById('bank-holder');
-
-            bankSelect.addEventListener('change', function() {
-
-                if (!this.value) {
-                    bankDetail.classList.add('hidden');
-                    return;
-                }
-
-                const selectedOption = this.options[this.selectedIndex];
-
-                bankNumber.textContent = selectedOption.dataset.number;
-                bankHolder.textContent = selectedOption.dataset.holder;
-
-                bankDetail.classList.remove('hidden');
-            });
-        </script>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-
-                const copyBtn = document.getElementById('copy-btn');
-                const bankNumber = document.getElementById('bank-number');
-                const copyMessage = document.getElementById('copy-message');
-
-                copyBtn.addEventListener('click', function() {
-
-                    const text = bankNumber.textContent.trim();
-                    if (!text) return;
-
-                    const textarea = document.createElement('textarea');
-                    textarea.value = text;
-                    document.body.appendChild(textarea);
-                    textarea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textarea);
-
-                    copyMessage.classList.remove('hidden');
-
-                    setTimeout(() => {
-                        copyMessage.classList.add('hidden');
-                    }, 2000);
-                });
-
-            });
-        </script>
+        @vite(['resources/js/donation/confirm.js'])
     @endpush
 </x-layout>
