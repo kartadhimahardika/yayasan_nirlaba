@@ -22,6 +22,7 @@ class StoreDonationRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'bank_id' => 'required|exists:banks,id',
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'email' => 'required|email|max:255',

@@ -14,7 +14,8 @@ class DonationController extends Controller
      */
     public function index()
     {
-        $donations = Donation::latest();
+        $donations = Donation::with('bank')->latest();
+
 
         if (request('keyword')) {
             $donations->where('name', 'like', '%' . request('keyword') . '%');

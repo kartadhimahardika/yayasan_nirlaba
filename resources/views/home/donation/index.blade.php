@@ -76,7 +76,7 @@
                                 <div class="text-2xl font-bold text-blue-600">Rp
                                     {{ number_format($donation->amount, 0, ',', '.') }}
                                 </div>
-                                <div class="text-sm text-blue-700 mt-1">Transfer Bank</div>
+                                <div class="text-sm text-blue-700 mt-1">Transfer </div>
                             </div>
 
                             <div class="grid grid-cols-2 gap-3 text-sm">

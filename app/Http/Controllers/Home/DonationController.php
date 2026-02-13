@@ -32,7 +32,8 @@ class DonationController extends Controller
 
     public function create()
     {
-        return view('home.donation.confirm');
+        $banks = Bank::latest()->get();
+        return view('home.donation.confirm', compact('banks'));
     }
 
     public function upload(Request $request)
@@ -66,10 +67,11 @@ class DonationController extends Controller
             $photoPath = Storage::url("img/$newPath");
         }
 
-        $slug = Str::slug($data['name']).'-'.Str::random(6);
+        $slug = Str::slug($data['name']) . '-' . Str::random(6);
 
         $donation = Donation::create([
             'slug' => $slug,
+            'bank_id' => $data['bank_id'],
             'name' => $data['name'],
             'phone' => $data['phone'],
             'email' => $data['email'],
@@ -79,11 +81,11 @@ class DonationController extends Controller
         ]);
 
         $adminNumber = env('ADMIN_WHATSAPP');
-        $message = "Ada donasi baru:\n".
-            "Nama Donatur: {$donation->name}\n".
-            "Nomor HP: {$donation->phone}\n".
-            "Jumlah Donasi: Rp {$donation->amount}\n".
-            "Pesan: {$donation->message}\n".
+        $message = "Ada donasi baru:\n" .
+            "Nama Donatur: {$donation->name}\n" .
+            "Nomor HP: {$donation->phone}\n" .
+            "Jumlah Donasi: Rp {$donation->amount}\n" .
+            "Pesan: {$donation->message}\n" .
             'Silakan cek dashboard untuk verifikasi.';
 
         FonnteService::sendWhatsApp($adminNumber, $message);

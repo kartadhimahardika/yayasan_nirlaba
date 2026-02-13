@@ -17,10 +17,15 @@ class Bank extends Model
         'holder',
     ];
 
+    public function donations()
+    {
+        return $this->hasMany(Donation::class);
+    }
+
     public function scopeFilter(Builder $query, array $filters): void
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {
-            return $query->where('holder', 'like', '%'.$search.'%');
+            return $query->where('holder', 'like', '%' . $search . '%');
         });
     }
 }
